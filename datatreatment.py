@@ -11,7 +11,11 @@ def extract_word_at_position(X, p):
     Returns:
         str: Word at the specified position.
     """
-    return X.split(",")[p]
+    split_values = X.split(",")
+    if p < len(split_values):
+        return split_values[p]
+    else:
+        return ""  # Return empty string if index is out of range
 
 
 def length_taxo(X):
