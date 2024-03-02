@@ -46,7 +46,7 @@ def importing_data(adresse):
     return data
 
 
-def get_data(data, level, number_category, type_classification="notspecified"):
+def get_data(data, level, number_category, type_classification="notspecified", Use_Others=True):
     """Preprocess and filter data based on taxonomic information.
 
     Args:
@@ -61,7 +61,7 @@ def get_data(data, level, number_category, type_classification="notspecified"):
     """
     data['nb_niv'] = data['Taxonomic'].apply(lambda x: length_taxo(x))
     
-    # Use .loc to avoid SettingWithCopyWarning
+
     data = data.loc[data['nb_niv'] >= 3].copy()
 
     # Extract the specified taxonomic level
@@ -76,10 +76,15 @@ def get_data(data, level, number_category, type_classification="notspecified"):
     
     specify_data.loc[:, f'level {level}'] = specify_data[f'level {level}'].str.replace(' ', '')
 
+    if Use_Others == False:
+        number_category+= 1
+
     name_category = specify_data[f'level {level}'].value_counts().head(number_category - 1).index.tolist()
     specify_data.loc[:, f'level {level}'] = specify_data[f'level {level}'].apply(
         lambda x: x if x in name_category else 'Others')
-    name_category.append('Others')
+
+    if Use_Others:
+        name_category.append('Others')
 
     specify_data = specify_data.drop(['nb_niv', 'Taxonomic', 'Organism', 'Entry'], axis=1)
     if type_classification != "notspecified":
@@ -87,10 +92,10 @@ def get_data(data, level, number_category, type_classification="notspecified"):
 
     specify_data = specify_data.reset_index(drop=True)
     specify_data.loc[:, f'level {level}'] = specify_data[f'level {level}'].astype("category")
-
+    
     for abc in name_category:
         print(f'number of {abc} : ')
-        print({specify_data[f'level {level}'].value_counts()[abc]})
+        print({specify_data[f'level {level}'].value_counts().get(abc, 0)})
         print("---------")
 
     return specify_data, name_category

@@ -117,7 +117,7 @@ def feature_importances(model_rdf, model_neural, mutual_info, data_df, smoothnes
     
     
     #smooth the scores with a moving average
-    scores_smoothed = scores_standardize.rolling(window=smoothness, min_periods=1,center=False).mean()
+    scores_smoothed = scores_standardize.rolling(window=smoothness, min_periods=1,center=True).mean()
     scores_smoothed = pd.DataFrame(StandardScaler().fit_transform(scores_smoothed), columns=scores_smoothed.columns, index=scores_smoothed.index)
     if plot:
         #plots
