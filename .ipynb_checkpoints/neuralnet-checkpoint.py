@@ -19,7 +19,7 @@ class ModelClassification(nn.Module):
             dropout_prob (float): Dropout probability for regularization (default is 0.0).
             l2_regu (float): L2 regularization strength (default is 0.0).
         """
-        super(ModelClassification, self).__init__()
+        super().__init__()
 
         # Input layer
         self.input_layer = nn.Linear(input_dim, layer_dim)
@@ -46,15 +46,15 @@ class ModelClassification(nn.Module):
         Returns:
             torch.Tensor: Output predictions.
         """
-        x = self.input_layer(x)
-        x = self.input_phi(x)
-        x = self.dropout(x)
+        x = self.input_layer(x.float())
+        x = self.input_phi(x.float())
+        x = self.dropout(x.float())
 
         for i in range(0, len(self.hidden_layers), 2):
-            x = self.hidden_layers[i](x)
-            x = self.hidden_layers[i + 1](x)
+            x = self.hidden_layers[i](x.float())
+            x = self.hidden_layers[i + 1](x.float())
 
-        x = self.output_layer(x)
+        x = self.output_layer(x.float())
 
         return x
 
@@ -68,7 +68,24 @@ class ModelClassification(nn.Module):
         Returns:
             torch.Tensor: Total loss including cross-entropy and L2 regularization.
         """
-        cross_entropy_loss = nn.CrossEntropyLoss()(output, target)
+        cross_entropy_loss = nn.CrossEntropyLoss()(output, target.long())
+
+        l2_reg = sum(torch.sum(param ** 2) for param in self.parameters())
+        loss = cross_entropy_loss + 0.5 * self.l2_reg * l2_reg
+
+        return loss
+
+    def get_loss(self, output, target):
+        """Compute the loss function for training.
+
+        Args:
+            output (torch.Tensor): Model predictions.
+            target (torch.Tensor): True labels.
+
+        Returns:
+            torch.Tensor: Total loss including cross-entropy and L2 regularization.
+        """
+        cross_entropy_loss = nn.CrossEntropyLoss()(output, target.long())
 
         l2_reg = sum(torch.sum(param ** 2) for param in self.parameters())
         loss = cross_entropy_loss + 0.5 * self.l2_reg * l2_reg

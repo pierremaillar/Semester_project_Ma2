@@ -72,11 +72,10 @@ def feature_importances(model_rdf, model_neural, mutual_info, data_df, smoothnes
     #computing the features importance in the neural network
     eye = torch.tensor(np.eye(len(columns_data)), dtype=torch.float32)
     zero = torch.tensor(np.zeros(len(columns_data)), dtype=torch.float32)
-    if torch.cuda.is_available():
-        device = torch.device("cuda")
-        eye = eye.to(device)
-        zero = zero.to(device)
     
+    if torch.cuda.is_available():
+        model_neural = model_neural.cpu()
+        
     neural_impo = model_neural(eye)-model_neural(zero)
     if torch.cuda.is_available():
         neural_impo = neural_impo.cpu()
@@ -100,16 +99,16 @@ def feature_importances(model_rdf, model_neural, mutual_info, data_df, smoothnes
     #loop for every positions, sum the features importances (for each methods) of every positions 
     for i in range(1,nbr_pos+1):
         selected_columns = neural_impo.filter(regex=f'_{i}_')
-        scores.loc[f'pos_{i}','Neural_scores'] = np.sum(np.abs(selected_columns), axis=1).values[0]
+        scores.loc[f'pos_{i}','Neural_scores'] = np.linalg.norm(np.abs(selected_columns), axis=1)
         
         
         selected_columns = mutual_df.filter(regex=f'_{i}_')
-        scores.loc[f'pos_{i}','Mutual_scores'] = np.sum(np.abs(selected_columns), axis=1).values[0]
+        scores.loc[f'pos_{i}','Mutual_scores'] = np.linalg.norm(np.abs(selected_columns), axis=1)
         
         
        
         selected_columns = rdf_impo.filter(regex=f'_{i}_')
-        scores.loc[f'pos_{i}','rdf_scores'] = np.sum(np.abs(selected_columns),axis = 1).values[0]
+        scores.loc[f'pos_{i}','rdf_scores'] = np.linalg.norm(np.abs(selected_columns),axis = 1)
      
     
     #standardize the scores

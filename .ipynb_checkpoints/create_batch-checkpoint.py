@@ -1,6 +1,7 @@
 import numpy as np
-import pandas as pd
 import torch
+import pandas as pd
+
 
 def split_dataset(dataset, train_ratio, test_ratio, val_ratio):
     """
@@ -22,22 +23,22 @@ def split_dataset(dataset, train_ratio, test_ratio, val_ratio):
     num_test = int(num_samples * test_ratio)
     
     # Shuffle the dataset
-    dataset_values = dataset.values
-    np.random.shuffle(dataset_values)
+    dataset_values = dataset.sample(frac=1).reset_index(drop=True)
     
     # Split the dataset into train, test, and validation sets
-    trainset = dataset_values[:num_train]
-    testset = dataset_values[num_train:num_train+num_test]
-    valset = dataset_values[num_train+num_test:]
-    
+    trainset = dataset_values.iloc[:num_train]
+    testset = dataset_values.iloc[num_train:num_train+num_test]
+    valset = dataset_values.iloc[num_train+num_test:]
+
+
     # Convert sets to PyTorch tensors
-    train_set = torch.tensor(trainset[:, 1:], dtype=torch.float32)
-    test_set = torch.tensor(testset[:, 1:], dtype=torch.float32)
-    val_set = torch.tensor(valset[:, 1:], dtype=torch.float32)
-    
+    train_set = torch.tensor(trainset.iloc[:, 1:].values.astype(bool), dtype=torch.bool)
+    test_set = torch.tensor(testset.iloc[:, 1:].values.astype(bool), dtype=torch.bool)
+    val_set = torch.tensor(valset.iloc[:, 1:].values.astype(bool), dtype=torch.bool)
+
     # Convert labels to PyTorch tensors
-    train_set_label = torch.tensor(trainset[:, 0], dtype=torch.long)
-    test_set_label = torch.tensor(testset[:, 0], dtype=torch.long)
-    val_set_label = torch.tensor(valset[:, 0], dtype=torch.long)
+    train_set_label = torch.tensor(trainset.iloc[:, 0].values.astype(int), dtype=torch.int8)
+    test_set_label = torch.tensor(testset.iloc[:, 0].values.astype(int), dtype=torch.int8)
+    val_set_label = torch.tensor(valset.iloc[:, 0].values.astype(int), dtype=torch.int8)
 
     return train_set, train_set_label, test_set, test_set_label, val_set, val_set_label
