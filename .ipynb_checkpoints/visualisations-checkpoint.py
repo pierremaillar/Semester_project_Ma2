@@ -73,7 +73,9 @@ def feature_importances(model_rdf, model_neural, mutual_info, data_df, smoothnes
     eye = torch.tensor(np.eye(len(columns_data)), dtype=torch.float32)
     zero = torch.tensor(np.zeros(len(columns_data)), dtype=torch.float32)
     
-    
+    if torch.cuda.is_available():
+        model_neural = model_neural.cpu()
+        
     neural_impo = model_neural(eye)-model_neural(zero)
     if torch.cuda.is_available():
         neural_impo = neural_impo.cpu()
