@@ -130,3 +130,77 @@ def feature_importances(model_rdf, model_neural, mutual_info, data_df, smoothnes
         plt.show()
     
     return scores_smoothed
+
+
+
+def feature_importances_neural(model_neural, data_df, smoothness=30, pos=range(1,600), plot=1):
+    """Plot feature importances for different models and return the smoothed scores.
+
+    Args:
+        model_neural (nn.Module): Neural network model.
+        data_df (pd.DataFrame): Input data.
+        smoothness (int): Smoothness factor for plotting (default is 30).
+        pos (range or list): Range or list of positions in the sequence (default is range(1,600)).
+        plot (boolean): 1 if we want to plot the results, 0 if we don't.
+
+    Returns:
+        pd.DataFrame: Smoothed scores for feature importances of each position.
+    """
+    # Drop the first column containing the labels
+    columns_data = data_df.drop(data_df.columns[0], axis=1).columns
+    
+    # Empty dataframe to be filled
+    scores = pd.DataFrame(index=[f'pos_{i}' for i in pos])  
+    
+    # Computing the features importance in the neural network
+    eye = torch.tensor(np.eye(len(columns_data)), dtype=torch.float32)
+    zero = torch.tensor(np.zeros(len(columns_data)), dtype=torch.float32)
+    
+    if torch.cuda.is_available():
+        model_neural = model_neural.cpu()
+        
+    neural_impo = model_neural(eye) - model_neural(zero)
+    if torch.cuda.is_available():
+        neural_impo = neural_impo.cpu()
+    
+    # Reshaping neural_impo into a dataframe
+    neural_impo = neural_impo.detach().numpy()
+    neural_impo = np.mean(neural_impo, axis=1)
+    neural_impo = neural_impo.reshape((len(neural_impo), 1))
+    neural_impo = pd.DataFrame(neural_impo.T, columns=columns_data)
+    
+    # Loop for every position, sum the features importances (for each method) of every position 
+    for i in pos:
+        selected_columns = neural_impo.filter(regex=f'_{i}_')
+        scores.loc[f'pos_{i}', 'Neural_scores'] = np.linalg.norm(np.abs(selected_columns), axis=1)
+        
+    # Standardize the scores
+    scores_standardize = pd.DataFrame(StandardScaler().fit_transform(scores), columns=scores.columns, index=scores.index)
+    scores_series = scores_standardize['Neural_scores']
+
+    if smoothness > 1:
+        # Add zero padding
+        padded_scores_series = pd.concat([pd.Series([0] * (smoothness - 1)), 
+                                          scores_series, 
+                                          pd.Series([0] * (smoothness - 1))], ignore_index=True)
+        # Calculate the moving average
+        smoothed_scores_series = padded_scores_series.rolling(window=smoothness, min_periods=1, center=True).mean()
+    
+        
+        # Remove the zero padding from the smoothed scores
+        smoothed_scores_series = smoothed_scores_series[smoothness - 1:len(smoothed_scores_series) - (smoothness - 1)] 
+        scores_smoothed = pd.DataFrame({'Neural_scores': smoothed_scores_series.values}, index=scores.index)
+        scores_standardize = pd.DataFrame(StandardScaler().fit_transform(scores_smoothed), columns=scores.columns, index=scores.index)
+
+    
+    if plot:
+        # Plot the smoothed scores
+        plt.scatter(pos, scores_standardize['Neural_scores'], label='Neural_scores', color='blue')
+        plt.title('Position importances')
+        plt.xlabel('Positions')
+        plt.ylabel('Scores')
+        plt.legend()
+        plt.show()
+    
+    return scores_standardize
+

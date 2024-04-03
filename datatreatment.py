@@ -1,6 +1,7 @@
 import pandas as pd
 import numpy as np
 import plotly.graph_objects as go
+from sklearn.preprocessing import MinMaxScaler
 
 def extract_taxonomic_info(dataframe, threshold):
     # Initialize an empty dictionary to store counts
@@ -35,7 +36,6 @@ def extract_taxonomic_info(dataframe, threshold):
 
 
 
-import plotly.graph_objects as go
 
 def create_sankey_diagram(dataframe, num_levels, threshold, node_pad=12, node_thickness=10, node_label_size=12):
     # Initialize lists to store source, target, and count for the Sankey diagram
@@ -43,6 +43,7 @@ def create_sankey_diagram(dataframe, num_levels, threshold, node_pad=12, node_th
     targets = []
     counts = []
     nbr_sources = []
+    pos_ys=[]
 
     for index, row in dataframe.iterrows():
         # Extract the taxonomic information from the "Taxonomic" column
@@ -55,19 +56,30 @@ def create_sankey_diagram(dataframe, num_levels, threshold, node_pad=12, node_th
         for i in range(len(taxonomic_names) - 1):
             # Remove leading/trailing whitespaces
             source = taxonomic_names[i].strip()
-            nbr_source = i*10
+            nbr_source = i
+            pos_y= i
             target = taxonomic_names[i + 1].strip()
 
             # Append source, target, and count to the lists
             sources.append(source)
             targets.append(target)
             nbr_sources.append(nbr_source)
+            pos_ys.append(pos_y)
             counts.append(1) 
 
-    sankey_df = pd.DataFrame({'Source': sources, 'Target': targets, 'Count': counts, 'Nbr Sources': nbr_sources})
+
+    scaler = MinMaxScaler()
+    normalized = scaler.fit_transform([[x] for x in nbr_sources])
+    nbr_sources = normalized.flatten()
+
+    scaler = MinMaxScaler()
+    normalized = scaler.fit_transform([[x] for x in pos_ys])
+    pos_ys = normalized.flatten()
+
+    sankey_df = pd.DataFrame({'Source': sources, 'Target': targets, 'Count': counts, 'Nbr Sources': nbr_sources, 'pos_y': pos_ys})
 
     # Aggregate counts based on source and target
-    sankey_df = sankey_df.groupby(['Source', 'Target', 'Nbr Sources']).size().reset_index(name='Count')
+    sankey_df = sankey_df.groupby(['Source', 'Target', 'Nbr Sources','pos_y']).size().reset_index(name='Count')
 
     # Filter out entries with counts below the threshold
     sankey_df = sankey_df[sankey_df['Count'] >= threshold]
@@ -94,7 +106,6 @@ def create_sankey_diagram(dataframe, num_levels, threshold, node_pad=12, node_th
     # Create a Plotly Sankey diagram
     fig = go.Figure(data=[go.Sankey(
         arrangement='snap',
-        orientation='h',
         
         node=dict(
             pad=node_pad,
@@ -102,7 +113,8 @@ def create_sankey_diagram(dataframe, num_levels, threshold, node_pad=12, node_th
             line=dict(color="black", width=0.5),
             label=list(string_to_integer_dict.keys()),
             color=sankey_df['Colors'],
-            x=sankey_df["Nbr Sources"]
+            x=sankey_df['Nbr Sources'],
+            y=sankey_df['pos_y']
         ),
         link=dict(
             source=sankey_df["Source"],  # Source nodes
@@ -187,7 +199,7 @@ def get_data(data, level, number_category, type_classification="notspecified", U
     data = data.loc[data['nb_niv'] >= 3].copy()
 
     # Extract the specified taxonomic level
-    data.loc[:, f'level {level}'] = data['Taxonomic'].apply(lambda x: extract_word_at_position(x, level - 1))
+    data.loc[:, 'Labels'] = data['Taxonomic'].apply(lambda x: extract_word_at_position(x, level - 1))
     
     if type_classification != "notspecified":
         data.loc[:, 'previous level'] = data['Taxonomic'].apply(lambda x: extract_word_at_position(x, level - 2))
@@ -196,28 +208,31 @@ def get_data(data, level, number_category, type_classification="notspecified", U
     else:
         specify_data = data.copy()
     
-    specify_data.loc[:, f'level {level}'] = specify_data[f'level {level}'].str.replace(' ', '')
+    specify_data.loc[:, f'Labels'] = specify_data['Labels'].str.replace(' ', '')
 
     if Use_Others == False:
         number_category+= 1
 
-    name_category = specify_data[f'level {level}'].value_counts().head(number_category - 1).index.tolist()
-    specify_data.loc[:, f'level {level}'] = specify_data[f'level {level}'].apply(
+    name_category = specify_data['Labels'].value_counts().head(number_category - 1).index.tolist()
+    specify_data.loc[:, 'Labels'] = specify_data['Labels'].apply(
         lambda x: x if x in name_category else 'Others')
 
     if Use_Others:
         name_category.append('Others')
+    else: 
+        specify_data.drop(specify_data[specify_data['Labels'] == 'Others'].index, inplace=True)
+
 
     specify_data = specify_data.drop(['nb_niv', 'Taxonomic', 'Organism', 'Entry'], axis=1)
     if type_classification != "notspecified":
         specify_data = specify_data.drop(['previous level'], axis=1)
 
     specify_data = specify_data.reset_index(drop=True)
-    specify_data.loc[:, f'level {level}'] = specify_data[f'level {level}'].astype("category")
+    specify_data.loc[:, f'Labels'] = specify_data['Labels'].astype("category")
     
     for abc in name_category:
         print(f'number of {abc} : ')
-        print({specify_data[f'level {level}'].value_counts().get(abc, 0)})
+        print({specify_data['Labels'].value_counts().get(abc, 0)})
         print("---------")
 
     return specify_data, name_category

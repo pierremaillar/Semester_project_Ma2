@@ -95,7 +95,6 @@ def cross_val_score(hyperparam_dict, train_loader, val_inputs, val_labels,output
                 
         # Generate predictions for the validation set
         val_pred = predict(model, val_inputs, device)
-        print("tkt ca avance")
         # Compute the weighted F1 score for the validation set
         val_f1 = f1_score(val_labels, val_pred, average='weighted')
         f1_scores.append(val_f1)
@@ -137,7 +136,6 @@ def optimize_hyperparameters_nn(train_inputs, train_labels, val_inputs, val_labe
         
         # Use GPU if available, otherwise use CPU
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        device ="cpu" 
         # Create DataLoader for training data
         train_dataset = TensorDataset(torch.Tensor(train_inputs), train_labels.to(torch.int8))
         train_loader = DataLoader(dataset=train_dataset, batch_size=batch_size, shuffle=True, drop_last = True)
