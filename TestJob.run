@@ -1,0 +1,7 @@
+#!/bin/bash
+#SBATCH --nodes 1
+#SBATCH --ntasks 1
+#SBATCH --cpus-per-task 1
+#SBATCH --time 1:00:00
+
+$HOME/code/moovit < $HOME/params/moo1
