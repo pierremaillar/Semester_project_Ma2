@@ -2,7 +2,7 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
-#SBATCH --time=0:20:00
+#SBATCH --time=0:0:10
 #SBATCH --output=myjob_output.txt
 #SBATCH --error=myjob_error.txt
 
