@@ -2,6 +2,8 @@
 #SBATCH --nodes 1
 #SBATCH --ntasks 1
 #SBATCH --cpus-per-task 1
-#SBATCH --time 1:00:00
+#SBATCH --time 0:20:00
+
+python Test_Job.py
 
 $HOME/code/moovit < $HOME/params/moo1
