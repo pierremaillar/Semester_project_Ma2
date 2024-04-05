@@ -1,8 +1,10 @@
 #!/bin/bash
-#SBATCH --nodes 1
-#SBATCH --ntasks 1
-#SBATCH --cpus-per-task 1
-#SBATCH --time 0:20:00
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --time=0:20:00
+#SBATCH --output=myjob_output.txt
+#SBATCH --error=myjob_error.txt
 
 python Test_Job.py
 
