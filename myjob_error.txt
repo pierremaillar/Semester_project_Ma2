@@ -1,0 +1,7 @@
+Traceback (most recent call last):
+  File "/home/pmaillar/Semester_project_Ma2/Test_Job.py", line 6, in <module>
+    from create_batch import *
+  File "/home/pmaillar/Semester_project_Ma2/create_batch.py", line 2, in <module>
+    import torch
+ModuleNotFoundError: No module named 'torch'
+/var/spool/slurmd/job2026824/slurm_script: line 14: /home/pmaillar/params/moo1: No such file or directory
