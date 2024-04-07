@@ -1,7 +1,17 @@
 Traceback (most recent call last):
-  File "/home/pmaillar/Semester_project_Ma2/Test_Job.py", line 8, in <module>
-    from neuralnet import *
-  File "/home/pmaillar/Semester_project_Ma2/neuralnet.py", line 6, in <module>
-    import matplotlib.pyplot as plt
-ModuleNotFoundError: No module named 'matplotlib'
-/var/spool/slurmd/job2027088/slurm_script: line 14: /home/pmaillar/code/moovit: No such file or directory
+  File "/home/pmaillar/Semester_project_Ma2/Test_Job.py", line 15, in <module>
+    hsp70 = importing_data(path_to_dataset)
+  File "/home/pmaillar/Semester_project_Ma2/datatreatment.py", line 176, in importing_data
+    data = pd.read_csv(adresse)
+  File "/home/pmaillar/miniconda3/envs/env_pytorch/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/pmaillar/miniconda3/envs/env_pytorch/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/pmaillar/miniconda3/envs/env_pytorch/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/pmaillar/miniconda3/envs/env_pytorch/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/pmaillar/miniconda3/envs/env_pytorch/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'dataset_hsp70_tax\\dataset_hsp70_tax.csv'
+/var/spool/slurmd/job2027089/slurm_script: line 14: /home/pmaillar/Semester_project_Ma2: Is a directory
