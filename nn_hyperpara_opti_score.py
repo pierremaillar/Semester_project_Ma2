@@ -99,14 +99,12 @@ def cross_val_pos_score(hyperparam_dict, train_inputs, train_labels , val_inputs
         # Compute the weighted F1 score for the validation set
         val_f1 = f1_score(val_labels, val_pred, average='weighted')
         score = feature_importances_neural(model, columns_info, smoothness=0, pos=pos, plot=0)
-        print(score)
         
         f1_scores.append(val_f1)
         Scores_pos.append(score)
-        print(Scores_pos)
 
     # Calculate mean and standard deviation of F1 scores and pos scores across all epochs
-    return np.mean(f1_scores), np.std(f1_scores), np.mean(Scores_pos,axis=1), np.std(Scores_pos, axis=1)
+    return np.mean(f1_scores), np.std(f1_scores), np.mean(Scores_pos,axis=0), np.std(Scores_pos, axis=0)
 
 
 def optimize_hyperparameters_nn_score(train_inputs, train_labels, val_inputs, val_labels,output_dim,columns_info, param_grid, nbr_training = 10, pos = range(0,600)):
@@ -149,10 +147,10 @@ def optimize_hyperparameters_nn_score(train_inputs, train_labels, val_inputs, va
 
         # Print the results for the current hyperparameter combination
         print(f"time: {time.time()-start_time}\n")
-        print(f"Hyperparameters: {hyperparam_dict}, Mean Validation F1 Score: {mean_f1}, Std Validation F1 Score: {std_f1}, Mean Score: {mean_score}, Std Score: {std_score}\n")
+        print(f"Hyperparameters: {hyperparam_dict}, Mean Validation F1 Score: {mean_f1}, Std Validation F1 Score: {std_f1}, Mean Std of Scores: {np.mean(std_scores)}\n")
 
         # Update the best hyperparameters if the mean score improves
-        if np.mean(std_scores) > np.mean(best_std_scores):
+        if np.mean(std_scores) < np.mean(best_std_scores):
             best_mean_scores = mean_scores
             best_std_scores = std_scores
             
@@ -169,7 +167,7 @@ def optimize_hyperparameters_nn_score(train_inputs, train_labels, val_inputs, va
     print(best_params)
     print(f"Best Mean Validation F1 Score: {best_mean_f1_score}")
     print(f"Std Validation F1 Score: {best_std_f1_score}")
-    print(f"Mean Std of scores: {np.mean(best_std_scores)}")
+    print(f"Best Mean Std of scores: {np.mean(best_std_scores)}")
     print(f"Total Runtime: {runtime} seconds")
 
     return best_params, best_mean_scores, best_std_scores
