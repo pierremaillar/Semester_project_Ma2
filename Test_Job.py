@@ -23,14 +23,14 @@ level3=category_to_int(level3,level3_categ)
 
 
 param_grid = {
-        'layer_dim': [64,128,256],
+        'layer_dim': [32,64,128],
         'number_hidden_layer': [2,3],
-        'dropout_prob': [0.2,0.3],
+        'dropout_prob': [0.2],
         'l2_regu': [1e-05],
         'weight_decay': [0.0001],
-        'learning_rate':[0.001, 0.0001],
-        'batch_size':[256, 128],
-        'num_epochs':[10,15]
+        'learning_rate':[0.0001],
+        'batch_size':[128],
+        'num_epochs':[13]
         }
 
 positions_to_keep =range(0,600)
