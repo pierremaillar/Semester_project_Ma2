@@ -32,7 +32,7 @@ def predict(model, X, device):
 
     return predictions
 
-def cross_val_pos_score(hyperparam_dict, inputs, labels , val_inputs, val_labels,output_dim, device, nbr_training, pos = range(0,600)):
+def cross_val_pos_score(hyperparam_dict, train_inputs, train_labels , val_inputs, val_labels,output_dim,columns_info, device, nbr_training, pos = range(0,600)):
     """Perform cross-validation for a neural network model.
 
     Args:
@@ -52,12 +52,12 @@ def cross_val_pos_score(hyperparam_dict, inputs, labels , val_inputs, val_labels
     f1_scores = []
     
     # Move inputs and labels to the specified device
-    inputs, labels = inputs.to(device), labels.to(device)
+    train_inputs, train_labels = train_inputs.to(device), train_labels.to(device)
 
 
     # Create a neural network model with the current hyperparameters
     model = ModelClassification(
-        input_dim=inputs.shape[1],
+        input_dim=train_inputs.shape[1],
         output_dim=output_dim,
         layer_dim=hyperparam_dict['layer_dim'],
         number_hidden_layer=hyperparam_dict['number_hidden_layer'],
@@ -75,7 +75,7 @@ def cross_val_pos_score(hyperparam_dict, inputs, labels , val_inputs, val_labels
     # Initialize Adam optimizer
     optimizer = optim.Adam(model.parameters(), lr=learning_rate, weight_decay=w_decay)
     
-    train_dataset = torch.utils.data.TensorDataset(inputs, labels)
+    train_dataset = torch.utils.data.TensorDataset(train_inputs, train_labels)
     train_loader = torch.utils.data.DataLoader(dataset=train_dataset, batch_size=batch_size, shuffle=True, drop_last = True)
 
         
@@ -98,17 +98,18 @@ def cross_val_pos_score(hyperparam_dict, inputs, labels , val_inputs, val_labels
         val_pred = predict(model, val_inputs, device)
         # Compute the weighted F1 score for the validation set
         val_f1 = f1_score(val_labels, val_pred, average='weighted')
-        score = feature_importances_neural(model, inputs, smoothness=0, pos=pos, plot=0)
+        score = feature_importances_neural(model, columns_info, smoothness=0, pos=pos, plot=0)
+        print(score)
         
         f1_scores.append(val_f1)
         Scores_pos.append(score)
         print(Scores_pos)
 
-    # Calculate mean and standard deviation of F1 scores across all epochs
-    return np.mean(f1_scores), np.std(f1_scores), np.mean(Scores_pos), np.std(Scores_pos)
+    # Calculate mean and standard deviation of F1 scores and pos scores across all epochs
+    return np.mean(f1_scores), np.std(f1_scores), np.mean(Scores_pos,axis=1), np.std(Scores_pos, axis=1)
 
 
-def optimize_hyperparameters_nn_score(train_inputs, train_labels, val_inputs, val_labels,output_dim, param_grid, nbr_training = 10, pos = range(0,600)):
+def optimize_hyperparameters_nn_score(train_inputs, train_labels, val_inputs, val_labels,output_dim,columns_info, param_grid, nbr_training = 10, pos = range(0,600)):
     """Optimize hyperparameters for a neural network using batched cross-validation and the standard deviation of the score as a criteria.
 
     Args:
@@ -144,7 +145,7 @@ def optimize_hyperparameters_nn_score(train_inputs, train_labels, val_inputs, va
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
         # Perform cross-validation using batched training
-        mean_f1, std_f1, mean_scores, std_scores = cross_val_pos_score(dict(zip(param_grid.keys(), hyperparams)), train_inputs,train_labels, val_inputs, val_labels,output_dim,device,nbr_training, pos)
+        mean_f1, std_f1, mean_scores, std_scores = cross_val_pos_score(dict(zip(param_grid.keys(), hyperparams)), train_inputs,train_labels, val_inputs, val_labels,output_dim,columns_info,device,nbr_training, pos)
 
         # Print the results for the current hyperparameter combination
         print(f"time: {time.time()-start_time}\n")
