@@ -1,3 +1,7 @@
 /home/pmaillar/Semester_project_Ma2/datatreatment.py:279: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
   data.iloc[:, 0] = data.iloc[:, 0].replace(map_dict)
-/var/spool/slurmd/job2027091/slurm_script: line 14: /home/pmaillar/Semester_project_Ma2: Is a directory
+Traceback (most recent call last):
+  File "/home/pmaillar/Semester_project_Ma2/Test_Job.py", line 43, in <module>
+    best_params_nn, mean_values, std_values = optimize_hyperparameters_nn_score(train, train_label, val, val_label, output_dim,columns_info,param_grid,nbr_training,positions_to_keep)
+NameError: name 'columns_info' is not defined
+/var/spool/slurmd/job2028227/slurm_script: line 14: /home/pmaillar/Semester_project_Ma2: Is a directory
