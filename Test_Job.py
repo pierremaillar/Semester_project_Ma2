@@ -23,14 +23,14 @@ columns_info = level3.drop(level3.columns[0], axis=1).columns
 
 
 param_grid = {
-        'layer_dim': [16, 32,64,128],
-        'number_hidden_layer': [2,3],
-        'dropout_prob': [0.2,0.4],
+        'layer_dim': [64,128,256],
+        'number_hidden_layer': [2,3,4],
+        'dropout_prob': [0.2,0.4,0.5,0.6],
         'l2_regu': [1e-05],
         'weight_decay': [0.0001],
         'learning_rate':[0.0001],
         'batch_size':[128],
-        'num_epochs':[13]
+        'num_epochs':[10]
         }
 
 positions_to_keep =range(0,600)
@@ -44,8 +44,5 @@ best_params_nn, mean_values, std_values = optimize_hyperparameters_nn_score(trai
 
 
 
-
-np.savetxt('mean.txt', mean_values)
-np.savetxt('std.txt', std_values)
 
 print("Job finished")

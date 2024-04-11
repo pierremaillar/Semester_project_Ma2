@@ -127,8 +127,8 @@ def optimize_hyperparameters_nn_score(train_inputs, train_labels, val_inputs, va
     best_params = None
     best_mean_f1_score = 0.0
     best_std_f1_score = 0.0
-    best_mean_scores = 0.0
-    best_std_scores = 0.0
+    best_mean_scores = 10.0
+    best_std_scores = 10.0
     start_time = time.time()
 
     # Generate all combinations of hyperparameters
