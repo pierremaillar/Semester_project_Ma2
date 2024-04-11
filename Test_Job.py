@@ -19,7 +19,7 @@ hsp70 = importing_data(path_to_dataset)
 level3, level3_categ= get_data(hsp70, 3, 6,"Bacteria",Use_Others=False)
 level3=encode01(level3)
 level3=category_to_int(level3,level3_categ)
-
+columns_info = level3.drop(level3.columns[0], axis=1).columns
 
 
 param_grid = {
@@ -45,7 +45,7 @@ best_params_nn, mean_values, std_values = optimize_hyperparameters_nn_score(trai
 
 
 
-np.savetxt('mean_opti.txt', mean_values)
-np.savetxt('std_opti.txt', std_values)
+np.savetxt('mean.txt', mean_values)
+np.savetxt('std.txt', std_values)
 
 print("Job finished")
