@@ -1,23 +1,9 @@
 /home/pmaillar/Semester_project_Ma2/datatreatment.py:279: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
   data.iloc[:, 0] = data.iloc[:, 0].replace(map_dict)
 Traceback (most recent call last):
-  File "/home/pmaillar/Semester_project_Ma2/Test_Job.py", line 43, in <module>
-    best_params_nn, mean_values, std_values = optimize_hyperparameters_nn_score(train, train_label, val, val_label, output_dim,columns_info,param_grid,nbr_training,positions_to_keep)
-  File "/home/pmaillar/Semester_project_Ma2/nn_hyperpara_opti_score.py", line 146, in optimize_hyperparameters_nn_score
-    mean_f1, std_f1, mean_scores, std_scores = cross_val_pos_score(dict(zip(param_grid.keys(), hyperparams)), train_inputs,train_labels, val_inputs, val_labels,output_dim,columns_info,device,nbr_training, pos)
-  File "/home/pmaillar/Semester_project_Ma2/nn_hyperpara_opti_score.py", line 92, in cross_val_pos_score
-    outputs = model(inputs)
-  File "/home/pmaillar/miniconda3/envs/env_pytorch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/home/pmaillar/miniconda3/envs/env_pytorch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/home/pmaillar/Semester_project_Ma2/neuralnet.py", line 49, in forward
-    x = self.input_layer(x.float())
-  File "/home/pmaillar/miniconda3/envs/env_pytorch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/home/pmaillar/miniconda3/envs/env_pytorch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/home/pmaillar/miniconda3/envs/env_pytorch/lib/python3.10/site-packages/torch/nn/modules/linear.py", line 116, in forward
-    return F.linear(input, self.weight, self.bias)
-RuntimeError: Expected all tensors to be on the same device, but found at least two devices, cpu and cuda:0! (when checking argument for argument mat1 in method wrapper_CUDA_addmm)
-/var/spool/slurmd/job2029227/slurm_script: line 14: /home/pmaillar/Semester_project_Ma2: Is a directory
+  File "/home/pmaillar/Semester_project_Ma2/Test_Job.py", line 48, in <module>
+    np.savetxt('mean.txt', mean_values)
+  File "/home/pmaillar/miniconda3/envs/env_pytorch/lib/python3.10/site-packages/numpy/lib/npyio.py", line 1570, in savetxt
+    raise ValueError(
+ValueError: Expected 1D or 2D array, got 0D array instead
+/var/spool/slurmd/job2029324/slurm_script: line 14: /home/pmaillar/Semester_project_Ma2: Is a directory
