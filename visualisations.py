@@ -158,8 +158,13 @@ def feature_importances_neural(model_neural, columns_data, smoothness=30, pos=ra
         model_neural = model_neural.cpu()
         
     neural_impo = model_neural(eye) - model_neural(zero)
+    
     if torch.cuda.is_available():
         neural_impo = neural_impo.cpu()
+
+    if torch.cuda.is_available():
+        model_neural = model_neural.cuda()
+        
     
     # Reshaping neural_impo into a dataframe
     neural_impo = neural_impo.detach().numpy()

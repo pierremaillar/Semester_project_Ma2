@@ -133,12 +133,12 @@ def feature_importances(model_rdf, model_neural, mutual_info, data_df, smoothnes
 
 
 
-def feature_importances_neural(model_neural, data_df, smoothness=30, pos=range(1,600), plot=1):
+def feature_importances_neural(model_neural, columns_data, smoothness=30, pos=range(1,600), plot=1):
     """Plot feature importances for different models and return the smoothed scores.
 
     Args:
         model_neural (nn.Module): Neural network model.
-        data_df (pd.DataFrame): Input data.
+        columns_data (pd.DataFrame): columns informations of the dataset.
         smoothness (int): Smoothness factor for plotting (default is 30).
         pos (range or list): Range or list of positions in the sequence (default is range(1,600)).
         plot (boolean): 1 if we want to plot the results, 0 if we don't.
@@ -146,8 +146,6 @@ def feature_importances_neural(model_neural, data_df, smoothness=30, pos=range(1
     Returns:
         pd.DataFrame: Smoothed scores for feature importances of each position.
     """
-    # Drop the first column containing the labels
-    columns_data = data_df.drop(data_df.columns[0], axis=1).columns
     
     # Empty dataframe to be filled
     scores = pd.DataFrame(index=[f'pos_{i}' for i in pos])  
@@ -160,8 +158,13 @@ def feature_importances_neural(model_neural, data_df, smoothness=30, pos=range(1
         model_neural = model_neural.cpu()
         
     neural_impo = model_neural(eye) - model_neural(zero)
+    
     if torch.cuda.is_available():
         neural_impo = neural_impo.cpu()
+
+    if torch.cuda.is_available():
+        model_neural = model_neural.cuda()
+        
     
     # Reshaping neural_impo into a dataframe
     neural_impo = neural_impo.detach().numpy()
