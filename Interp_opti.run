@@ -2,13 +2,13 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
-#SBATCH --time=2:00:00
+#SBATCH --time=6:00:00
 #SBATCH --partition=gpu
 #SBATCH --qos=gpu
 #SBATCH --gres=gpu:1
 #SBATCH --output=myjob_output.txt
 #SBATCH --error=myjob_error.txt
 
-python Test_Job.py
+python Interp_opti.py
 
 $HOME/Semester_project_Ma2 < $HOME/Semester_project_Ma2
