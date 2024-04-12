@@ -1,9 +1,3 @@
 /home/pmaillar/Semester_project_Ma2/datatreatment.py:279: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
   data.iloc[:, 0] = data.iloc[:, 0].replace(map_dict)
-Traceback (most recent call last):
-  File "/home/pmaillar/Semester_project_Ma2/Test_Job.py", line 48, in <module>
-    np.savetxt('mean.txt', mean_values)
-  File "/home/pmaillar/miniconda3/envs/env_pytorch/lib/python3.10/site-packages/numpy/lib/npyio.py", line 1570, in savetxt
-    raise ValueError(
-ValueError: Expected 1D or 2D array, got 0D array instead
-/var/spool/slurmd/job2029324/slurm_script: line 14: /home/pmaillar/Semester_project_Ma2: Is a directory
+/var/spool/slurmd/job2029617/slurm_script: line 14: /home/pmaillar/Semester_project_Ma2: Is a directory
