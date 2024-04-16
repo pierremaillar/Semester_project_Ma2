@@ -9,5 +9,5 @@
 #SBATCH --output=myjob_output.txt
 #SBATCH --error=myjob_error.txt
 
-python Interp_opti.py
+python Interp_opti_BEA.py
 
