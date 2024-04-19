@@ -1,0 +1,4 @@
+Traceback (most recent call last):
+  File "/home/pmaillar/Semester_project_Ma2/Job_pos_scores.py", line 10, in <module>
+    level3, level3_categ= get_data(hsp70, 3, 6,"Bacteria",Use_Others=False)
+NameError: name 'hsp70' is not defined
