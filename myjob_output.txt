@@ -1,0 +1,22 @@
+number of Bacteria : 
+{59810}
+---------
+number of Eukaryota : 
+{36377}
+---------
+number of Archaea : 
+{2207}
+---------
+shape of dataframe : (98394, 12927)
+time: 290.35400009155273
+
+Hyperparameters: {'layer_dim': 128, 'number_hidden_layer': 4, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 128, 'num_epochs': 10}, Mean Validation F1 Score: 0.9975989305375912, Std Validation F1 Score: 0.00013854137933429268, Mean Std of Scores: 0.2747124721865273
+
+
+Best Hyperparameters:
+{'layer_dim': 128, 'number_hidden_layer': 4, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 128, 'num_epochs': 10}
+Best Mean Validation F1 Score: 0.9975989305375912
+Std Validation F1 Score: 0.00013854137933429268
+Best Mean Std of scores: 0.2747124721865273
+Total Runtime: 290.3541033267975 seconds
+Job finished
