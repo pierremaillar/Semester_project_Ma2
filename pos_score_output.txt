@@ -1,0 +1,49 @@
+number of Pseudomonadota : 
+{23889}
+---------
+number of Terrabacteriagroup : 
+{19458}
+---------
+number of FCBgroup : 
+{5211}
+---------
+number of Bacteriaincertaesedis : 
+{2557}
+---------
+number of PVCgroup : 
+{2126}
+---------
+number of Campylobacterota : 
+{1082}
+---------
+shape of dataframe : (54323, 11450)
+Epoch [1/10], Training Loss: 0.0493
+Epoch [1/10], Validation Loss: 0.0515
+Epoch [1/10], Validation Accuracy: 98.9875%
+Epoch [2/10], Training Loss: 0.0370
+Epoch [2/10], Validation Loss: 0.0497
+Epoch [2/10], Validation Accuracy: 99.0427%
+Epoch [3/10], Training Loss: 0.0188
+Epoch [3/10], Validation Loss: 0.0423
+Epoch [3/10], Validation Accuracy: 99.1900%
+Epoch [4/10], Training Loss: 0.0269
+Epoch [4/10], Validation Loss: 0.0406
+Epoch [4/10], Validation Accuracy: 99.2268%
+Epoch [5/10], Training Loss: 0.1929
+Epoch [5/10], Validation Loss: 0.0418
+Epoch [5/10], Validation Accuracy: 99.3004%
+Epoch [6/10], Training Loss: 0.0783
+Epoch [6/10], Validation Loss: 0.0447
+Epoch [6/10], Validation Accuracy: 99.1348%
+Epoch [7/10], Training Loss: 0.2218
+Epoch [7/10], Validation Loss: 0.0433
+Epoch [7/10], Validation Accuracy: 99.1348%
+Epoch [8/10], Training Loss: 0.0666
+Epoch [8/10], Validation Loss: 0.0425
+Epoch [8/10], Validation Accuracy: 99.0795%
+Epoch [9/10], Training Loss: 0.0312
+Epoch [9/10], Validation Loss: 0.0416
+Epoch [9/10], Validation Accuracy: 99.1348%
+Epoch [10/10], Training Loss: 0.0814
+Epoch [10/10], Validation Loss: 0.0413
+Epoch [10/10], Validation Accuracy: 99.2084%

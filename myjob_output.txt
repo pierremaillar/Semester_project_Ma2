@@ -1,0 +1,54 @@
+number of Bacteria : 
+{59810}
+---------
+number of Eukaryota : 
+{36377}
+---------
+number of Archaea : 
+{2207}
+---------
+shape of dataframe : (98394, 12927)
+time: 128.80605697631836
+
+Hyperparameters: {'layer_dim': 128, 'number_hidden_layer': 2, 'dropout_prob': 0.7, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 128, 'num_epochs': 10}, Mean Validation F1 Score: 0.9980880952397987, Std Validation F1 Score: 9.982629067017896e-05, Mean Std of Scores: 0.18657497982572438
+
+time: 215.84922337532043
+
+Hyperparameters: {'layer_dim': 128, 'number_hidden_layer': 2, 'dropout_prob': 0.7, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 256, 'num_epochs': 10}, Mean Validation F1 Score: 0.9981087641017311, Std Validation F1 Score: 0.00013767459825816185, Mean Std of Scores: 0.20810463895358874
+
+time: 286.9010272026062
+
+Hyperparameters: {'layer_dim': 128, 'number_hidden_layer': 2, 'dropout_prob': 0.7, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 512, 'num_epochs': 10}, Mean Validation F1 Score: 0.9981068985595176, Std Validation F1 Score: 0.0002882982779075041, Mean Std of Scores: 0.16685807418960433
+
+time: 404.45641589164734
+
+Hyperparameters: {'layer_dim': 128, 'number_hidden_layer': 2, 'dropout_prob': 0.8, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 128, 'num_epochs': 10}, Mean Validation F1 Score: 0.9982509752400839, Std Validation F1 Score: 4.0502469278103775e-05, Mean Std of Scores: 0.2674936945534714
+
+time: 491.83233618736267
+
+Hyperparameters: {'layer_dim': 128, 'number_hidden_layer': 2, 'dropout_prob': 0.8, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 256, 'num_epochs': 10}, Mean Validation F1 Score: 0.9982509186075008, Std Validation F1 Score: 0.00010018143565802594, Mean Std of Scores: 0.2241612460863409
+
+time: 562.9827301502228
+
+Hyperparameters: {'layer_dim': 128, 'number_hidden_layer': 2, 'dropout_prob': 0.8, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 512, 'num_epochs': 10}, Mean Validation F1 Score: 0.9980287176584328, Std Validation F1 Score: 0.00033491231937089137, Mean Std of Scores: 0.146588492363073
+
+time: 680.5757806301117
+
+Hyperparameters: {'layer_dim': 128, 'number_hidden_layer': 2, 'dropout_prob': 0.95, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 128, 'num_epochs': 10}, Mean Validation F1 Score: 0.2321085460918595, Std Validation F1 Score: 0.159111630435087, Mean Std of Scores: 0.21111264232849192
+
+time: 767.9787571430206
+
+Hyperparameters: {'layer_dim': 128, 'number_hidden_layer': 2, 'dropout_prob': 0.95, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 256, 'num_epochs': 10}, Mean Validation F1 Score: 0.24274114360287796, Std Validation F1 Score: 0.3276040109539788, Mean Std of Scores: 0.40476146503040716
+
+time: 839.3904030323029
+
+Hyperparameters: {'layer_dim': 128, 'number_hidden_layer': 2, 'dropout_prob': 0.95, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 512, 'num_epochs': 10}, Mean Validation F1 Score: 0.63670036579191, Std Validation F1 Score: 0.23906495608245779, Mean Std of Scores: 0.4199411546789524
+
+
+Best Hyperparameters:
+{'layer_dim': 128, 'number_hidden_layer': 2, 'dropout_prob': 0.8, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 512, 'num_epochs': 10}
+Best Mean Validation F1 Score: 0.9980287176584328
+Std Validation F1 Score: 0.00033491231937089137
+Best Mean Std of scores: 0.146588492363073
+Total Runtime: 839.3905081748962 seconds
+Job finished
