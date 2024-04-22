@@ -9,5 +9,7 @@
 #SBATCH --output=pos_score_output.txt
 #SBATCH --error=pos_score_error.txt
 
-python Job_pos_scores.py
+python Job_pos_scores_BEA.py
+
+python Job_pos_scores_BAC.py
 
