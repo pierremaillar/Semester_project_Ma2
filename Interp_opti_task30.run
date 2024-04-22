@@ -1,0 +1,13 @@
+#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --time=10:00:00
+#SBATCH --partition=gpu
+#SBATCH --qos=gpu
+#SBATCH --gres=gpu:10
+#SBATCH --output=myjob_output.txt
+#SBATCH --error=myjob_error.txt
+
+python Interp_opti_task30.py
+
