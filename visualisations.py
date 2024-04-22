@@ -133,7 +133,7 @@ def feature_importances(model_rdf, model_neural, mutual_info, data_df, smoothnes
 
 
 
-def feature_importances_neural(model_neural, columns_data, smoothness=30, pos=range(1,600), plot=1):
+def feature_importances_neural(model_neural, columns_data, smoothness=30, pos=range(0,599), plot=1):
     """Plot feature importances for different models and return the smoothed scores.
 
     Args:
@@ -161,8 +161,6 @@ def feature_importances_neural(model_neural, columns_data, smoothness=30, pos=ra
     
     if torch.cuda.is_available():
         neural_impo = neural_impo.cpu()
-
-    if torch.cuda.is_available():
         model_neural = model_neural.cuda()
         
     

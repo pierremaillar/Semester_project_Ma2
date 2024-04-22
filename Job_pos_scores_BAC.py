@@ -15,7 +15,7 @@ level3, level3_categ= get_data(hsp70, 3, 6,"Bacteria",Use_Others=False)
 level3=encode01(level3)
 level3=category_to_int(level3,level3_categ)
 columns_info = level3.drop(level3.columns[0], axis=1).columns
-positions_to_keep =range(0,600)
+positions_to_keep =range(0,599)
 
 
 best_params_nn = {'layer_dim': 64, 'number_hidden_layer': 4, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.001, 'batch_size': 64, 'num_epochs': 10}
@@ -29,7 +29,6 @@ weight_decay = best_params_nn['weight_decay']
 learning_rate = best_params_nn['learning_rate']
 batch_size = best_params_nn['batch_size']
 num_epochs = best_params_nn['num_epochs']
-positions_to_keep =range(0,600)
 
 
 output_dim = 6
@@ -42,10 +41,10 @@ for i in range(30):
     input_dim = train.shape[1]
     
     model_neural = ModelClassification(input_dim, output_dim, layer_dim, number_hidden_layer, dropout_prob, l2_regu)
-    optimizer = torch.optim.Adam(model_neural.parameters(), lr = learning_rate, weight_decay=weight_decay)#lr : learning rate
+    optimizer = torch.optim.Adam(model_neural.parameters(), lr = learning_rate, weight_decay=weight_decay)
     train_model(model_neural, num_epochs, train, train_label, test, test_label, optimizer, batch_size)
     
-    dfs.append(feature_importances_neural(model_neural, level3, smoothness = 0, pos =positions_to_keep, plot = 0))
+    dfs.append(feature_importances_neural(model_neural, columns_info, smoothness = 0, pos =positions_to_keep, plot = 0))
     t = time.time() - tic
     print(f"Got to iteration {i+1} in {t} seconds")
     
@@ -72,7 +71,7 @@ num_ticks = len(positions_to_keep)//15
 xticks_indices = np.linspace(0, len(positions_to_keep) - 1, num_ticks, dtype=int)
 plt.xticks(np.array(positions_to_keep)[xticks_indices])
 
-plt.savefig('Postitionimportances.png', dpi=200)
+plt.savefig('Postitionimportances_opti_BAC.png', dpi=200)
 
 
 

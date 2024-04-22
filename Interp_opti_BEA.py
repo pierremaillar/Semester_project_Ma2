@@ -23,15 +23,15 @@ columns_info = level3.drop(level3.columns[0], axis=1).columns
 param_grid = {
         'layer_dim': [128],
         'number_hidden_layer': [2],
-        'dropout_prob': [0.7,0.8,0.95],
-        'l2_regu': [1e-05],
+        'dropout_prob': [0.8],
+        'l2_regu': [5e-06,1e-05,1e-04],
         'weight_decay': [0.0001],
         'learning_rate':[0.0001],
-        'batch_size':[128,256,512],
+        'batch_size':[256,512,1024,2048],
         'num_epochs':[10]
         }
 
-positions_to_keep =range(0,600)
+positions_to_keep =range(0,599)
 nbr_training = 5
 
 
