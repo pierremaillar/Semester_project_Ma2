@@ -18,7 +18,7 @@ columns_info = level3.drop(level3.columns[0], axis=1).columns
 positions_to_keep =range(0,599)
 
 
-best_params_nn = {'layer_dim': 64, 'number_hidden_layer': 4, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.001, 'batch_size': 64, 'num_epochs': 10}
+best_params_nn = {'layer_dim': 64, 'number_hidden_layer': 4, 'dropout_prob': 0.8, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 512, 'num_epochs': 10}
 
 
 layer_dim = best_params_nn['layer_dim']
@@ -76,8 +76,8 @@ plt.savefig('Postitionimportances_opti_task30.png', dpi=200)
 
 
 
-np.savetxt('mean.txt', mean_values)
-np.savetxt('std.txt', std_values)
+np.savetxt('mean_task30.txt', mean_values)
+np.savetxt('std_task30.txt', std_values)
 
 
 print("Job finished")

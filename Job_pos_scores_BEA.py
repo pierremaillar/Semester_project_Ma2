@@ -78,8 +78,8 @@ plt.savefig('Postitionimportances_opti_BEA.png', dpi=200)
 
 
 
-np.savetxt('mean.txt', mean_values)
-np.savetxt('std.txt', std_values)
+np.savetxt('mean_BEA.txt', mean_values)
+np.savetxt('std_BEA.txt', std_values)
 
 
 print("Job finished")
