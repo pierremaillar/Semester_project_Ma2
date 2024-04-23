@@ -1,20 +1,6 @@
 /home/pmaillar/Semester_project_Ma2/datatreatment.py:279: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
   data.iloc[:, 0] = data.iloc[:, 0].replace(map_dict)
-Traceback (most recent call last):
-  File "/home/pmaillar/Semester_project_Ma2/Job_pos_scores.py", line 48, in <module>
-    dfs.append(feature_importances_neural(model_neural, level3, smoothness = 0, pos =positions_to_keep, plot = 0))
-  File "/home/pmaillar/Semester_project_Ma2/visualisations.py", line 160, in feature_importances_neural
-    neural_impo = model_neural(eye) - model_neural(zero)
-  File "/home/pmaillar/miniconda3/envs/env_pytorch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/home/pmaillar/miniconda3/envs/env_pytorch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/home/pmaillar/Semester_project_Ma2/neuralnet.py", line 49, in forward
-    x = self.input_layer(x.float())
-  File "/home/pmaillar/miniconda3/envs/env_pytorch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1511, in _wrapped_call_impl
-    return self._call_impl(*args, **kwargs)
-  File "/home/pmaillar/miniconda3/envs/env_pytorch/lib/python3.10/site-packages/torch/nn/modules/module.py", line 1520, in _call_impl
-    return forward_call(*args, **kwargs)
-  File "/home/pmaillar/miniconda3/envs/env_pytorch/lib/python3.10/site-packages/torch/nn/modules/linear.py", line 116, in forward
-    return F.linear(input, self.weight, self.bias)
-RuntimeError: mat1 and mat2 shapes cannot be multiplied (54323x54323 and 11449x64)
+/home/pmaillar/Semester_project_Ma2/datatreatment.py:279: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  data.iloc[:, 0] = data.iloc[:, 0].replace(map_dict)
+/home/pmaillar/Semester_project_Ma2/datatreatment.py:279: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  data.iloc[:, 0] = data.iloc[:, 0].replace(map_dict)
