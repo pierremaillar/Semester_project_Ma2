@@ -5,7 +5,7 @@
 #SBATCH --time=10:00:00
 #SBATCH --partition=gpu
 #SBATCH --qos=gpu
-#SBATCH --gres=gpu:8
+#SBATCH --gres=gpu:4
 #SBATCH --output=myjob_output_BAC.txt
 #SBATCH --error=myjob_error_BAC.txt
 
