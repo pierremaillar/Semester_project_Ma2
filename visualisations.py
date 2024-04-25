@@ -206,3 +206,39 @@ def feature_importances_neural(model_neural, columns_data, smoothness=30, pos=ra
     
     return scores_standardize
 
+
+
+
+
+def Modify_PDB_file(input_file, scores):
+    """Create a copy of a .pdb file replacing the temperature factor (B-factor) by the scores for each position.
+
+    Args:
+        input_file (string): path to the input .pdb file.
+        scores (list): list of the scores.
+
+    Returns:
+        None
+    """
+    n = 0
+    output_file =f"{input_file[:-4]}_scores.pdb"
+    with open(input_file, 'r') as f_in, open(output_file, 'w') as f_out:
+        for line in f_in:
+            if line.startswith('ATOM'):
+                # Get the position in the sequence
+                position = int(line[22:26])
+
+                if 1 <= position <= len(scores):
+                    # Replace the B-factor with the corresponding value from the list
+                    line = line[:60] + "{:6.2f}".format(scores[position - 1]) + line[66:]
+                else:
+                    # If the position is out of range, replace the B-factor with 0
+                    line = line[:60] + "{:6.2f}".format(0) + line[66:]
+
+                n += 1
+
+            f_out.write(line)
+
+    print(f"{output_file} has been created with {n} values modified")
+
+
