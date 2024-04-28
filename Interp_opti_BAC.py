@@ -25,11 +25,11 @@ columns_info = level3.drop(level3.columns[0], axis=1).columns
 param_grid = {
         'layer_dim': [32],
         'number_hidden_layer': [5],
-        'dropout_prob': [0.1,0.2,0.3,0.4,0.5,0.6,0.7,0.8,0.9],
+        'dropout_prob': [0.6],
         'l2_regu': [1e-05],
         'weight_decay': [0.0001],
         'learning_rate':[0.0001],
-        'batch_size':[64],
+        'batch_size':[16,32,64,96,128,256,512,1024,2048,4096],
         'num_epochs':[10]
         }
 
