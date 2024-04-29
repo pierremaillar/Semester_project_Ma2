@@ -1,0 +1,13 @@
+#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --time=12:00:00
+#SBATCH --partition=gpu
+#SBATCH --qos=gpu
+#SBATCH --gres=gpu:1
+#SBATCH --output=myjob_output_EUK.txt
+#SBATCH --error=myjob_error_EUK.txt
+
+python Interp_opti_EUK.py
+
