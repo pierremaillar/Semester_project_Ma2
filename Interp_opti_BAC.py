@@ -28,9 +28,9 @@ param_grid = {
         'dropout_prob': [0.6],
         'l2_regu': [1e-05],
         'weight_decay': [0.0001],
-        'learning_rate':[0.0001],
-        'batch_size':[16,32,64,96,128,256,512,1024,2048,4096],
-        'num_epochs':[10]
+        'learning_rate':[0.00005,0.0001,0.0005,0.001,0.01],
+        'batch_size':[96],
+        'num_epochs':[2,4,8,12,15,20]
         }
 
 positions_to_keep =range(0,600)
