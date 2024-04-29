@@ -1,0 +1,147 @@
+number of Pseudomonadota : 
+{23889}
+---------
+number of Terrabacteriagroup : 
+{19458}
+---------
+number of FCBgroup : 
+{5211}
+---------
+number of Bacteriaincertaesedis : 
+{2557}
+---------
+number of PVCgroup : 
+{2126}
+---------
+number of Campylobacterota : 
+{1082}
+---------
+shape of dataframe : (54323, 11450)
+time: 68.14506268501282
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 5e-05, 'batch_size': 96, 'num_epochs': 2}, Mean Validation F1 Score: 0.9460979762608785, Std Validation F1 Score: 0.05942749595591132, Mean Std of Scores: 0.20329329898398493
+
+time: 154.65646982192993
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 5e-05, 'batch_size': 96, 'num_epochs': 4}, Mean Validation F1 Score: 0.9704913414331184, Std Validation F1 Score: 0.04309611359122709, Mean Std of Scores: 0.2094893484937139
+
+time: 297.48200607299805
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 5e-05, 'batch_size': 96, 'num_epochs': 8}, Mean Validation F1 Score: 0.9877840444663463, Std Validation F1 Score: 0.008718936983528509, Mean Std of Scores: 0.34814620772963095
+
+time: 496.6252315044403
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 5e-05, 'batch_size': 96, 'num_epochs': 12}, Mean Validation F1 Score: 0.9907038247245834, Std Validation F1 Score: 0.0011951926995334649, Mean Std of Scores: 0.2525959353911915
+
+time: 738.1019449234009
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 5e-05, 'batch_size': 96, 'num_epochs': 15}, Mean Validation F1 Score: 0.9914026382173995, Std Validation F1 Score: 0.001477893057786257, Mean Std of Scores: 0.22137908717444787
+
+time: 1050.0687165260315
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 5e-05, 'batch_size': 96, 'num_epochs': 20}, Mean Validation F1 Score: 0.9911672041352011, Std Validation F1 Score: 0.0013458442697437752, Mean Std of Scores: 0.2547487128152502
+
+time: 1108.6290829181671
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 96, 'num_epochs': 2}, Mean Validation F1 Score: 0.9696457155198696, Std Validation F1 Score: 0.04157996314101774, Mean Std of Scores: 0.14260939390952435
+
+time: 1195.4566311836243
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 96, 'num_epochs': 4}, Mean Validation F1 Score: 0.9835122791023412, Std Validation F1 Score: 0.021705677970016955, Mean Std of Scores: 0.19282589529501049
+
+time: 1338.6263031959534
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 96, 'num_epochs': 8}, Mean Validation F1 Score: 0.9916402439775656, Std Validation F1 Score: 0.001943665837385962, Mean Std of Scores: 0.1729350296686873
+
+time: 1538.505030632019
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 96, 'num_epochs': 12}, Mean Validation F1 Score: 0.9863854983818916, Std Validation F1 Score: 0.0021407247383942525, Mean Std of Scores: 0.1854796873393641
+
+time: 1780.8069665431976
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 96, 'num_epochs': 15}, Mean Validation F1 Score: 0.9913219905786796, Std Validation F1 Score: 0.000727880752672943, Mean Std of Scores: 0.18467770947321935
+
+time: 2093.955334663391
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 96, 'num_epochs': 20}, Mean Validation F1 Score: 0.9911732936112132, Std Validation F1 Score: 0.0014871734401968712, Mean Std of Scores: 0.19484519240084172
+
+time: 2152.6691558361053
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0005, 'batch_size': 96, 'num_epochs': 2}, Mean Validation F1 Score: 0.9910588865948695, Std Validation F1 Score: 0.001230373453786526, Mean Std of Scores: 0.20374874347235067
+
+time: 2239.7111489772797
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0005, 'batch_size': 96, 'num_epochs': 4}, Mean Validation F1 Score: 0.9924369075433559, Std Validation F1 Score: 0.0008672758095395897, Mean Std of Scores: 0.3657332891922211
+
+time: 2383.3578219413757
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0005, 'batch_size': 96, 'num_epochs': 8}, Mean Validation F1 Score: 0.9871071122776278, Std Validation F1 Score: 0.008634705743752372, Mean Std of Scores: 0.3987390282700744
+
+time: 2583.635323524475
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0005, 'batch_size': 96, 'num_epochs': 12}, Mean Validation F1 Score: 0.9875382171906679, Std Validation F1 Score: 0.003827998454905494, Mean Std of Scores: 0.1975666438444747
+
+time: 2826.4959032535553
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0005, 'batch_size': 96, 'num_epochs': 15}, Mean Validation F1 Score: 0.9828705577170803, Std Validation F1 Score: 0.0052047681424008995, Mean Std of Scores: 0.35214873030797755
+
+time: 3137.7120406627655
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0005, 'batch_size': 96, 'num_epochs': 20}, Mean Validation F1 Score: 0.9695555331835989, Std Validation F1 Score: 0.02014997382483767, Mean Std of Scores: 0.22859750778828802
+
+time: 3195.8094346523285
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.001, 'batch_size': 96, 'num_epochs': 2}, Mean Validation F1 Score: 0.9911510406430872, Std Validation F1 Score: 0.001028424261655666, Mean Std of Scores: 0.21142228351532513
+
+time: 3281.839108943939
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.001, 'batch_size': 96, 'num_epochs': 4}, Mean Validation F1 Score: 0.9912395467077226, Std Validation F1 Score: 0.0024751014700186706, Mean Std of Scores: 0.35136624981699355
+
+time: 3423.7293524742126
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.001, 'batch_size': 96, 'num_epochs': 8}, Mean Validation F1 Score: 0.9889057106600582, Std Validation F1 Score: 0.0038726889914343617, Mean Std of Scores: 0.2135793306851691
+
+time: 3620.899636745453
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.001, 'batch_size': 96, 'num_epochs': 12}, Mean Validation F1 Score: 0.9756112437581651, Std Validation F1 Score: 0.011656188763713647, Mean Std of Scores: 0.2595702152236268
+
+time: 3858.75342130661
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.001, 'batch_size': 96, 'num_epochs': 15}, Mean Validation F1 Score: 0.9705197795915297, Std Validation F1 Score: 0.024740258844393598, Mean Std of Scores: 0.4486023487122713
+
+time: 4164.826497554779
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.001, 'batch_size': 96, 'num_epochs': 20}, Mean Validation F1 Score: 0.990106250943861, Std Validation F1 Score: 0.001687798220717592, Mean Std of Scores: 0.4443703458928321
+
+time: 4222.423827648163
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.01, 'batch_size': 96, 'num_epochs': 2}, Mean Validation F1 Score: 0.9317601247268069, Std Validation F1 Score: 0.04195916663023286, Mean Std of Scores: 0.3200594215735913
+
+time: 4307.519314289093
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.01, 'batch_size': 96, 'num_epochs': 4}, Mean Validation F1 Score: 0.9388172617376014, Std Validation F1 Score: 0.025806843761423042, Mean Std of Scores: 0.45947078093949256
+
+time: 4447.783536434174
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.01, 'batch_size': 96, 'num_epochs': 8}, Mean Validation F1 Score: 0.7208771231061042, Std Validation F1 Score: 0.19941267777878716, Mean Std of Scores: 0.4850697793539312
+
+time: 4642.968879938126
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.01, 'batch_size': 96, 'num_epochs': 12}, Mean Validation F1 Score: 0.6976474516740293, Std Validation F1 Score: 0.2128018924125555, Mean Std of Scores: 0.45256710230442254
+
+time: 4878.356276273727
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.01, 'batch_size': 96, 'num_epochs': 15}, Mean Validation F1 Score: 0.3730051108494238, Std Validation F1 Score: 0.3396059806339596, Mean Std of Scores: 0.49086636764394986
+
+time: 5181.624936580658
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.01, 'batch_size': 96, 'num_epochs': 20}, Mean Validation F1 Score: 0.5793306222240557, Std Validation F1 Score: 0.12713657731131603, Mean Std of Scores: 0.48188167767898527
+
+
+Best Hyperparameters:
+{'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 96, 'num_epochs': 2}
+Best Mean Validation F1 Score: 0.9696457155198696
+Std Validation F1 Score: 0.04157996314101774
+Best Mean Std of scores: 0.14260939390952435
+Total Runtime: 5181.625025987625 seconds
+Job finished
