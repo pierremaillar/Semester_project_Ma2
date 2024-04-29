@@ -1,0 +1,67 @@
+number of Pseudomonadota : 
+{23889}
+---------
+number of Terrabacteriagroup : 
+{19458}
+---------
+number of FCBgroup : 
+{5211}
+---------
+number of Bacteriaincertaesedis : 
+{2557}
+---------
+number of PVCgroup : 
+{2126}
+---------
+number of Campylobacterota : 
+{1082}
+---------
+shape of dataframe : (54323, 11450)
+time: 745.3290450572968
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 16, 'num_epochs': 10}, Mean Validation F1 Score: 0.9809219485102554, Std Validation F1 Score: 0.013679402533992937, Mean Std of Scores: 0.2480172568801021
+
+time: 1142.6670970916748
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 32, 'num_epochs': 10}, Mean Validation F1 Score: 0.9916996242761058, Std Validation F1 Score: 0.0004728065301813751, Mean Std of Scores: 0.2518432968117648
+
+time: 1369.2334849834442
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 64, 'num_epochs': 10}, Mean Validation F1 Score: 0.9920386483158519, Std Validation F1 Score: 0.0009774314542862633, Mean Std of Scores: 0.1786440460601154
+
+time: 1538.4373281002045
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 96, 'num_epochs': 10}, Mean Validation F1 Score: 0.9875773708752357, Std Validation F1 Score: 0.00391914117860646, Mean Std of Scores: 0.16878425843764194
+
+time: 1679.623220205307
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 128, 'num_epochs': 10}, Mean Validation F1 Score: 0.9918649747423214, Std Validation F1 Score: 0.0013066255470483622, Mean Std of Scores: 0.18841557210772086
+
+time: 1780.1381583213806
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 256, 'num_epochs': 10}, Mean Validation F1 Score: 0.9905936984072262, Std Validation F1 Score: 0.0023036528272506393, Mean Std of Scores: 0.25099037954786135
+
+time: 1859.4937281608582
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 512, 'num_epochs': 10}, Mean Validation F1 Score: 0.9768378576274909, Std Validation F1 Score: 0.031500947239233086, Mean Std of Scores: 0.25926588363754316
+
+time: 1930.720725774765
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 1024, 'num_epochs': 10}, Mean Validation F1 Score: 0.9569553266437361, Std Validation F1 Score: 0.06696229599365684, Mean Std of Scores: 0.29625547231650745
+
+time: 2001.1787369251251
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 2048, 'num_epochs': 10}, Mean Validation F1 Score: 0.9215745973557707, Std Validation F1 Score: 0.09374612664824154, Mean Std of Scores: 0.2467843823776886
+
+time: 2071.77259850502
+
+Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 4096, 'num_epochs': 10}, Mean Validation F1 Score: 0.8563311578858919, Std Validation F1 Score: 0.11104633834733399, Mean Std of Scores: 0.30848940985332085
+
+
+Best Hyperparameters:
+{'layer_dim': 32, 'number_hidden_layer': 5, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 96, 'num_epochs': 10}
+Best Mean Validation F1 Score: 0.9875773708752357
+Std Validation F1 Score: 0.00391914117860646
+Best Mean Std of scores: 0.16878425843764194
+Total Runtime: 2071.7726707458496 seconds
+Job finished
