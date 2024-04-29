@@ -26,11 +26,11 @@ param_grid = {
         'layer_dim': [32],
         'number_hidden_layer': [5],
         'dropout_prob': [0.6],
-        'l2_regu': [1e-05],
-        'weight_decay': [0.0001],
-        'learning_rate':[0.00005,0.0001,0.0005,0.001,0.01],
+        'l2_regu': [1e-06,5e-06,1e-05,5e-05,1e-04],
+        'weight_decay': [1e-05,5e-05,1e-04,5e-04,1e-03],
+        'learning_rate':[0.0001],
         'batch_size':[96],
-        'num_epochs':[2,4,8,12,15,20]
+        'num_epochs':[10]
         }
 
 positions_to_keep =range(0,600)
