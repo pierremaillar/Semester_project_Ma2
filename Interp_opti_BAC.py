@@ -34,7 +34,7 @@ param_grid = {
         }
 
 positions_to_keep =range(0,600)
-nbr_training = 10
+nbr_training = 30
 
 
 train, train_label, test, test_label, val, val_label=split_dataset(level3, 0.8, 0.1, 0.1)
