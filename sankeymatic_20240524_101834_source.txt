@@ -1,0 +1,132 @@
+// SankeyMATIC diagram inputs - Saved: 24/05/2024 10:18:34
+// https://sankeymatic.com/build/
+
+// === Nodes and Flows ===
+
+// Sample Job Search diagram:
+
+Cellular Organisms[59810] Bacteria
+Cellular Organisms[36377] Eukaryota
+Cellular Organisms[2207] Archaea
+
+Archaea[1188] Euryarchaeota
+Archaea[356] TACKgroup
+Archaea[274] DPANNgroup
+// Archaea[389] Others
+
+Eukaryota[25989] Opisthokonta
+Eukaryota[6861] Viridiplantae
+Eukaryota[2241] Sar
+// Eukaryota[1286] Others
+
+Opisthokonta[18059] Metazoa
+Opisthokonta[7894] Fungi
+// Opisthokonta[3] Others
+
+Viridiplantae[6556] Streptophyta
+Viridiplantae[301] Chlorophyta
+// Viridiplantae[4] Others
+
+Sar[1167] Alveolata
+Sar[1006] Stramenophiles
+// Sar[68] Others
+
+Bacteria[23889] Pseudomonodota
+Bacteria[19458] Terrabacteriagroup
+Bacteria[5211] FCBgroup
+Bacteria[2557] Bacteriaincertaesedis
+Bacteria[2126] PVCgroup
+Bacteria[1082] Campylobacterota
+// Bacteria[5487] Others
+
+Terrabacteriagroup[8001] Bacillota
+Terrabacteriagroup[7118] Actinomycetota
+Terrabacteriagroup[2368] Cyanobacteriota/Melainabacteriagroup
+// Terrabacteriagroup[1971] Others
+
+Pseudomonodota[13237] Gammaproteobacteria
+Pseudomonodota[5340] Alphaproteobacteria
+Pseudomonodota[4918] Betaproteobacteria
+// Pseudomonodota[394] Others
+
+// === Settings ===
+
+size w 1200
+  h 600
+margin l 12
+  r 12
+  t 20
+  b 20
+bg color #ffffff
+  transparent N
+node w 10
+  h 49
+  spacing 100
+  border 3
+  theme a
+  color #dd0e0e
+  opacity 1
+flow curvature 0.74
+  inheritfrom source
+  color #999999
+  opacity 0.4
+layout order automatic
+  justifyorigins N
+  justifyends Y
+  reversegraph N
+  attachincompletesto leading
+labels color #000000
+  hide N
+  highlight 0.55
+  fontface monospace
+  linespacing 0
+  relativesize 100
+  magnify 100
+labelname appears Y
+  size 13.5
+  weight 400
+labelvalue appears Y
+  fullprecision Y
+  position above
+  weight 700
+labelposition autoalign 1
+  scheme auto
+  first before
+  breakpoint 5
+value format ',.'
+  prefix ''
+  suffix ''
+themeoffset a 4
+  b 1
+  c 7
+  d 2
+meta mentionsankeymatic N
+  listimbalances N
+
+// === Moved Nodes ===
+
+move Cellular Organisms -0.04977, 0
+move Sar 0.00172, -0.02362
+move Campylobacterota -0.33372, -0.26361
+move PVCgroup -0.33333, -0.27509
+move Bacteriaincertaesedis -0.33199, 0.14109
+move FCBgroup -0.33295, 0.19171
+move DPANNgroup -0.33295, -0.07692
+move TACKgroup -0.33238, 0.01311
+move Euryarchaeota -0.33104, -0.00207
+move Stramenophiles -0.00267, 0.02689
+move Alveolata -0.00134, 0.00897
+move Bacillota 0, 0.1797
+move Actinomycetota 0, 0.17878
+move Cyanobacteriota/Melainabacteriagroup 0, 0.17923
+move Opisthokonta -0.00044, 0.25205
+move Pseudomonodota 0, -0.59809
+move Gammaproteobacteria 0, -0.54167
+move Alphaproteobacteria 0, -0.50902
+move Fungi -0.00267, 0.2373
+move Metazoa -0.00134, 0.26365
+move Betaproteobacteria 0, -0.51161
+move Viridiplantae 0.00134, -0.02466
+move Chlorophyta -0.00134, -0.02504
+move Streptophyta -0.00267, -0.06679
+move Terrabacteriagroup 0, 0.14064
