@@ -1,4 +1,4 @@
-// SankeyMATIC diagram inputs - Saved: 24/05/2024 10:18:34
+// SankeyMATIC diagram inputs - Saved: 24/05/2024 10:32:35
 // https://sankeymatic.com/build/
 
 // === Nodes and Flows ===
@@ -106,27 +106,30 @@ meta mentionsankeymatic N
 // === Moved Nodes ===
 
 move Cellular Organisms -0.04977, 0
-move Sar 0.00172, -0.02362
-move Campylobacterota -0.33372, -0.26361
-move PVCgroup -0.33333, -0.27509
-move Bacteriaincertaesedis -0.33199, 0.14109
-move FCBgroup -0.33295, 0.19171
-move DPANNgroup -0.33295, -0.07692
-move TACKgroup -0.33238, 0.01311
-move Euryarchaeota -0.33104, -0.00207
+move Sar 0.00172, 0.01256
+move Campylobacterota -0.33372, -0.19892
+move PVCgroup -0.33333, -0.22809
+move Bacteriaincertaesedis -0.33199, 0.07041
+move FCBgroup -0.33295, 0.15306
+move DPANNgroup -0.33295, -0.05545
+move TACKgroup -0.33238, 0.0489
+move Euryarchaeota -0.33104, 0.01771
 move Stramenophiles -0.00267, 0.02689
 move Alveolata -0.00134, 0.00897
-move Bacillota 0, 0.1797
-move Actinomycetota 0, 0.17878
-move Cyanobacteriota/Melainabacteriagroup 0, 0.17923
-move Opisthokonta -0.00044, 0.25205
-move Pseudomonodota 0, -0.59809
+move Bacillota 0, 0.1666
+move Actinomycetota 0, 0.16575
+move Cyanobacteriota/Melainabacteriagroup 0, 0.17199
+move Opisthokonta -0.00044, 0.32965
+move Pseudomonodota 0, -0.57948
 move Gammaproteobacteria 0, -0.54167
 move Alphaproteobacteria 0, -0.50902
-move Fungi -0.00267, 0.2373
-move Metazoa -0.00134, 0.26365
+move Fungi -0.00267, 0.24665
+move Metazoa -0.00134, 0.2756
 move Betaproteobacteria 0, -0.51161
-move Viridiplantae 0.00134, -0.02466
+move Viridiplantae 0.00134, 0.04039
 move Chlorophyta -0.00134, -0.02504
-move Streptophyta -0.00267, -0.06679
-move Terrabacteriagroup 0, 0.14064
+move Streptophyta -0.00267, -0.04638
+move Terrabacteriagroup 0, 0.24713
+move Bacteria -0.07359, -0.1976
+move Eukaryota -0.07225, 0
+move Archaea -0.07225, 0
