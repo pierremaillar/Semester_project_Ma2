@@ -1,0 +1,16 @@
+#!/bin/bash
+#SBATCH --nodes=1
+#SBATCH --ntasks=1
+#SBATCH --cpus-per-task=1
+#SBATCH --time=00:30:00
+#SBATCH --partition=gpu
+#SBATCH --qos=gpu
+#SBATCH --gres=gpu:1
+#SBATCH --output=job_output.txt
+#SBATCH --error=job_error.txt
+#SBATCH --output=output/job_output.txt
+#SBATCH --error=output/job_error.txt
+
+
+python Job_pos_scores_BAC.py
+

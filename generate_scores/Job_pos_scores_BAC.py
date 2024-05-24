@@ -1,0 +1,96 @@
+import numpy as np
+import pandas as pd
+import time
+
+
+from python_modules.create_batch import *
+from python_modules.datatreatment import *
+from python_modules.neuralnet import *
+from python_modules.visualisations import *
+
+
+path_to_dataset ="../dataset_hsp70_tax/dataset_hsp70_tax.csv" 
+hsp70 = importing_data(path_to_dataset)
+
+
+level3, level3_categ= get_data(hsp70, 3, 6,"Bacteria",Use_Others=False)
+level3=encode01(level3)
+level3=category_to_int(level3,level3_categ)
+columns_info = level3.drop(level3.columns[0], axis=1).columns
+positions_to_keep =range(0,599)
+
+
+best_params_nn = {'layer_dim': 64, 'number_hidden_layer': 4, 'dropout_prob': 0.6, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.001, 'batch_size': 64, 'num_epochs': 10}
+
+
+layer_dim = best_params_nn['layer_dim']
+number_hidden_layer = best_params_nn['number_hidden_layer']
+dropout_prob = best_params_nn['dropout_prob']
+l2_regu = best_params_nn['l2_regu']
+weight_decay = best_params_nn['weight_decay']
+learning_rate = best_params_nn['learning_rate']
+batch_size = best_params_nn['batch_size']
+num_epochs = best_params_nn['num_epochs']
+
+
+output_dim = 6
+tic = time.time()
+dfs = []
+
+for i in range(30):
+    
+    train, train_label, test, test_label, val, val_label=split_dataset(level3, 0.8, 0.1, 0.1)
+    input_dim = train.shape[1]
+    
+    model_neural = ModelClassification(input_dim, output_dim, layer_dim, number_hidden_layer, dropout_prob, l2_regu)
+    optimizer = torch.optim.Adam(model_neural.parameters(), lr = learning_rate, weight_decay=weight_decay)
+    train_model(model_neural, num_epochs, train, train_label, test, test_label, optimizer, batch_size)
+    
+    dfs.append(feature_importances_neural(model_neural, columns_info, smoothness = 0, pos =positions_to_keep, plot = 0))
+    t = time.time() - tic
+    print(f"Got to iteration {i+1} in {t} seconds")
+    
+    
+
+arrays = [df.to_numpy() for df in dfs]
+
+stacked_array = np.stack(arrays, axis=0)
+mean_values = np.mean(stacked_array, axis=0)
+std_values = np.std(stacked_array, axis=0)
+
+
+
+
+plt.figure(figsize=(50, 6))
+plt.errorbar(positions_to_keep, mean_values[:, 0], std_values[:, 0], capsize=4, color="red", fmt="o", markersize=4)
+
+plt.xlabel('Positions')
+plt.ylabel('Scores')
+plt.title('Position importances')
+
+
+num_ticks = len(positions_to_keep)//15
+xticks_indices = np.linspace(0, len(positions_to_keep) - 1, num_ticks, dtype=int)
+plt.xticks(np.array(positions_to_keep)[xticks_indices])
+
+plt.savefig('output/Postitionimportances_opti_BAC.png', dpi=200)
+
+
+#save data
+np.savetxt('output/mean_BAC.txt', mean_values)
+np.savetxt('output/std_BAC.txt', std_values)
+
+
+#modify pdb file
+df = pd.read_csv('mean_BAC.txt', header=None, names=['mean'])
+smoothness = 80
+df['mean'] = df['mean'].rolling(window=smoothness, min_periods=1, center=True).mean()
+
+scores = df['mean']
+input_pdb = "5nro.pdb"
+
+Modify_PDB_file(input_pdb, scores)
+
+
+
+print("Job finished")
