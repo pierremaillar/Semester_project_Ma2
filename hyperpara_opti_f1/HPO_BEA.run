@@ -5,9 +5,9 @@
 #SBATCH --time=10:00:00
 #SBATCH --partition=gpu
 #SBATCH --qos=gpu
-#SBATCH --gres=gpu:1
-#SBATCH --output=myjob_output_BAC.txt
-#SBATCH --error=myjob_error_BAC.txt
+#SBATCH --gres=gpu:2
+#SBATCH --output=output/output_BEA.txt
+#SBATCH --error=output/error_BEA.txt
 
-python Interp_opti_BAC.py
+python job_HPO_cons_BEA.py
 

@@ -111,7 +111,6 @@ def optimize_hyperparameters_nn(train_inputs, train_labels, val_inputs, val_labe
         train_labels (numpy array): True labels for training data.
         val_inputs (numpy array): Validation data.
         val_labels (numpy array): True labels for validation data.
-        num_epochs (int): Number of training epochs per batch.
         number_batch (int): Number of batches for cross-validation.
         output_dim (int): Dimension of the output (number of classes).
         param_grid (dict): Dictionary of hyperparameter values to search.

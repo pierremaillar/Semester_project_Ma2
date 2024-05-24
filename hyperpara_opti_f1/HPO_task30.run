@@ -2,12 +2,12 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
-#SBATCH --time=00:30:00
+#SBATCH --time=1-00:00:00
 #SBATCH --partition=gpu
 #SBATCH --qos=gpu
 #SBATCH --gres=gpu:1
-#SBATCH --output=output/job_output.txt
-#SBATCH --error=output/job_error.txt
+#SBATCH --output=output/output_task30.txt
+#SBATCH --error=output/error_task30.txt
 
-python Job_scores_EUK.py
+python job_HPO_cons_task30.py
 

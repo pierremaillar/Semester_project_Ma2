@@ -2,12 +2,12 @@
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 #SBATCH --cpus-per-task=1
-#SBATCH --time=1-00:00:00
+#SBATCH --time=10:00:00
 #SBATCH --partition=gpu
 #SBATCH --qos=gpu
 #SBATCH --gres=gpu:1
-#SBATCH --output=myjob_output_task30.txt
-#SBATCH --error=myjob_error_task30.txt
+#SBATCH --output=output/output_BAC.txt
+#SBATCH --error=output/error_BAC.txt
 
-python Interp_opti_task30.py
+python job_HPO_cons_BAC.py
 

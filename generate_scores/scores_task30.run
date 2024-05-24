@@ -6,10 +6,7 @@
 #SBATCH --partition=gpu
 #SBATCH --qos=gpu
 #SBATCH --gres=gpu:1
-#SBATCH --output=job_output.txt
-#SBATCH --error=job_error.txt
 #SBATCH --output=output/job_output.txt
 #SBATCH --error=output/job_error.txt
 
-
-python Job_pos_scores_task30.py
+python Job_scores_task30.py
