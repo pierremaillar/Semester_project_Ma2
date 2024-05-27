@@ -22,18 +22,18 @@ columns_info = level3.drop(level3.columns[0], axis=1).columns
 
 
 param_grid = {
-        'layer_dim': [32],
-        'number_hidden_layer': [5],
-        'dropout_prob': [0.6],
-        'l2_regu': [1e-06,5e-06,1e-05,5e-05,1e-04],
-        'weight_decay': [1e-05,5e-05,1e-04,5e-04,1e-03],
+        'layer_dim': [32,64,128,256],
+        'number_hidden_layer': [2,3,4],
+        'dropout_prob': [0.2,0.4,0.6,0.8],
+        'l2_regu': [1e-05],
+        'weight_decay': [0.0001],
         'learning_rate':[0.0001],
-        'batch_size':[96],
-        'num_epochs':[10]
+        'batch_size':[64,512,2048],
+        'num_epochs':[3,10]
         }
 
 positions_to_keep =range(0,600)
-nbr_training = 30
+nbr_training = 3
 
 
 train, train_label, test, test_label, val, val_label=split_dataset(level3, 0.8, 0.1, 0.1)
