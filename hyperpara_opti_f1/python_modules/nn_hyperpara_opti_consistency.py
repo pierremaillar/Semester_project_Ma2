@@ -6,6 +6,7 @@ import torch
 import torch.optim as optim
 from torch.utils.data import DataLoader, TensorDataset
 from sklearn.metrics import f1_score
+from python_modules.visualisations import *
 
 def predict(model, X, device):
     """Generate predictions using a neural network model.
@@ -91,8 +92,7 @@ def cross_val_pos_consistency(hyperparam_dict, train_inputs, train_labels , val_
                 outputs = model(inputs)
                 loss = model.get_loss(outputs, labels)
                 loss.backward()
-                optimizer.step()     
-                
+                optimizer.step()          
         # Generate predictions for the validation set
         val_pred = predict(model, val_inputs, device)
         # Compute the weighted F1 score for the validation set
@@ -128,6 +128,13 @@ def optimize_hyperparameters_nn_consistency(train_inputs, train_labels, val_inpu
     best_std_f1_score = 0.0
     best_mean_scores = 10.0
     best_std_scores = 10.0
+    
+    store_params = []
+    store_f1 = []
+    store_f1_std = []
+    store_mean_scores = []
+    store_std_scores = []
+    
     start_time = time.time()
 
     # Generate all combinations of hyperparameters
@@ -149,6 +156,14 @@ def optimize_hyperparameters_nn_consistency(train_inputs, train_labels, val_inpu
         print(f"Hyperparameters: {hyperparam_dict}, Mean Validation F1 Score: {mean_f1}, Std Validation F1 Score: {std_f1}, Mean Std of Scores: {np.mean(std_scores)}\n")
 
         # Update the best hyperparameters if the mean score improves
+        
+        store_params.append(hyperparam_dict)
+        store_f1.append(mean_f1)
+        store_f1_std.append(std_f1)
+        store_mean_scores.append(mean_scores)
+        store_std_scores.append(np.mean(std_scores))
+
+
         if np.mean(std_scores) < np.mean(best_std_scores):
             best_mean_scores = mean_scores
             best_std_scores = std_scores
@@ -167,6 +182,8 @@ def optimize_hyperparameters_nn_consistency(train_inputs, train_labels, val_inpu
     print(f"Best Mean Validation F1 Score: {best_mean_f1_score}")
     print(f"Std Validation F1 Score: {best_std_f1_score}")
     print(f"Best Mean Std of scores: {np.mean(best_std_scores)}")
-    print(f"Total Runtime: {runtime} seconds")
+    print(f"\n stored f1 scores: {store_f1}")
+    print(f"\n stored consistency: {store_std_scores}")
+    print(f"\n Total Runtime: {runtime} seconds")
 
     return best_params, best_mean_scores, best_std_scores

@@ -36,7 +36,7 @@ def convolution_matrix(labels, pred, categ):
 
     
     # plot the confusion matrix
-    plt.figure(figsize=(30, 30))
+    plt.figure(figsize=(10, 10))
     plt.imshow(dfcm, cmap='viridis', interpolation='nearest', vmin=10, vmax=np.mean(cm))
     for i in range(len(dfcm.index)):
         for j in range(len(dfcm.columns)):
