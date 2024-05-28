@@ -9,5 +9,5 @@
 #SBATCH --output=output/output_EUK.txt
 #SBATCH --error=output/error_EUK.txt
 
-python job_HPO_cons_EUK.py
+python job_HPO_EUK.py
 

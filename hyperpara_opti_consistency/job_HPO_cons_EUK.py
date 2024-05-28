@@ -12,7 +12,7 @@ from python_modules.nn_hyperpara_opti_consistency import *
 
 
 
-path_to_dataset ="dataset_hsp70_tax/dataset_hsp70_tax.csv" 
+path_to_dataset ="../dataset_hsp70_tax/dataset_hsp70_tax.csv" 
 hsp70 = importing_data(path_to_dataset)
 
 

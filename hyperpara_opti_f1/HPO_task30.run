@@ -9,5 +9,5 @@
 #SBATCH --output=output/output_task30.txt
 #SBATCH --error=output/error_task30.txt
 
-python job_HPO_cons_task30.py
+python job_HPO_task30.py
 
