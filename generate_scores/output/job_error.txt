@@ -1,0 +1,16 @@
+/home/pmaillar/Semester_project_Ma2/generate_scores/python_modules/datatreatment.py:191: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  data.iloc[:, 0] = data.iloc[:, 0].replace(map_dict)
+Traceback (most recent call last):
+  File "/home/pmaillar/Semester_project_Ma2/generate_scores/Job_scores_BAC.py", line 85, in <module>
+    df = pd.read_csv('mean_BAC.txt', header=None, names=['mean'])
+  File "/home/pmaillar/miniconda3/envs/env_pytorch/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1026, in read_csv
+    return _read(filepath_or_buffer, kwds)
+  File "/home/pmaillar/miniconda3/envs/env_pytorch/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 620, in _read
+    parser = TextFileReader(filepath_or_buffer, **kwds)
+  File "/home/pmaillar/miniconda3/envs/env_pytorch/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1620, in __init__
+    self._engine = self._make_engine(f, self.engine)
+  File "/home/pmaillar/miniconda3/envs/env_pytorch/lib/python3.10/site-packages/pandas/io/parsers/readers.py", line 1880, in _make_engine
+    self.handles = get_handle(
+  File "/home/pmaillar/miniconda3/envs/env_pytorch/lib/python3.10/site-packages/pandas/io/common.py", line 873, in get_handle
+    handle = open(
+FileNotFoundError: [Errno 2] No such file or directory: 'mean_BAC.txt'
