@@ -34,6 +34,7 @@ class ModelClassification(nn.Module):
 
         # Output layer
         self.output_layer = nn.Linear(layer_dim, output_dim)
+        self.softmax = nn.Softmax(dim=1)
 
         self.l2_reg = l2_regu
 
@@ -47,14 +48,14 @@ class ModelClassification(nn.Module):
             torch.Tensor: Output predictions.
         """
         x = self.input_layer(x.float())
-        x = self.input_phi(x.float())
-        x = self.dropout(x.float())
+        x = self.input_phi(x)
+        x = self.dropout(x)
 
         for i in range(0, len(self.hidden_layers), 2):
-            x = self.hidden_layers[i](x.float())
-            x = self.hidden_layers[i + 1](x.float())
+            x = self.hidden_layers[i](x)
+            x = self.hidden_layers[i + 1](x)
 
-        x = self.output_layer(x.float())
+        x = self.output_layer(x)
 
         return x
 
@@ -123,6 +124,7 @@ def train_model(model, num_epochs, train_inputs, train_labels, val_inputs, val_l
         with torch.no_grad():
             val_outputs = model(val_inputs)
             val_loss = model.get_loss(val_outputs, val_labels)
+            #val_pred = torch.softmax(val_outputs, dim=1) #to give probabilities as output
             val_pred = val_outputs.argmax(dim=1)
             val_correct = (val_pred == val_labels).sum().item()
             val_accuracy = val_correct / val_inputs.shape[0]
