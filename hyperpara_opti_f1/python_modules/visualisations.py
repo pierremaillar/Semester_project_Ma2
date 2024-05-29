@@ -44,7 +44,7 @@ def convolution_matrix(labels, pred, categ):
     plt.xticks(range(len(dfcm.columns)), dfcm.columns)
     plt.yticks(range(len(dfcm.index)), dfcm.index)
     cbar = plt.colorbar()
-    cbar.set_label('Values')
+    cbar.set_label('Number of prediction')
     plt.show()
     return 
 
@@ -67,7 +67,7 @@ def feature_importances_neural(model_neural, columns_data, smoothness=0, pos=ran
     # Empty dataframe to be filled
     scores = pd.DataFrame(index=[f'pos_{i}' for i in pos])  
     
-    # Computing the features importance in the neural network
+    # Computing the features importance in the neural network (relevant scores)
     eye = torch.tensor(np.eye(len(columns_data)), dtype=torch.float32)
     zero = torch.tensor(np.zeros(len(columns_data)), dtype=torch.float32)
     
