@@ -74,23 +74,7 @@ class ModelClassification(nn.Module):
         loss = cross_entropy_loss + 0.5 * self.l2_reg * l2_reg
 
         return loss
-
-    def get_loss(self, output, target):
-        """Compute the loss function for training.
-
-        Args:
-            output (torch.Tensor): Model predictions.
-            target (torch.Tensor): True labels.
-
-        Returns:
-            torch.Tensor: Total loss including cross-entropy and L2 regularization.
-        """
-        cross_entropy_loss = nn.CrossEntropyLoss()(output, target.long())
-
-        l2_reg = sum(torch.sum(param ** 2) for param in self.parameters())
-        loss = cross_entropy_loss + 0.5 * self.l2_reg * l2_reg
-
-        return loss
+    
 
 def train_model(model, num_epochs, train_inputs, train_labels, val_inputs, val_labels, optimizer, batch_size=128):
     """Train a neural network model.
