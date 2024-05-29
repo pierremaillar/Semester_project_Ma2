@@ -4,6 +4,18 @@ import plotly.graph_objects as go
 from sklearn.preprocessing import MinMaxScaler
 
 def extract_taxonomic_info(dataframe, threshold):
+    
+    """Extract taxonomic information from a DataFrame and count occurrences.
+
+    Args:
+        dataframe (pd.DataFrame): Input DataFrame containing taxonomic information.
+        threshold (int): Minimum count threshold for taxonomic names to be included.
+
+    Returns:
+        pd.DataFrame: DataFrame containing taxonomic names and their counts.
+                      Columns: ['Taxonomic Name', 'Count']
+    """
+        
     # Initialize an empty dictionary to store counts
     taxonomic_counts = {}
     
@@ -33,106 +45,6 @@ def extract_taxonomic_info(dataframe, threshold):
     taxonomic_counts_df = pd.DataFrame(list(taxonomic_counts_cleaned.items()), columns=['Taxonomic Name', 'Count'])
     
     return taxonomic_counts_df
-
-
-
-
-def create_sankey_diagram(dataframe, num_levels, threshold, node_pad=12, node_thickness=10, node_label_size=12):
-    # Initialize lists to store source, target, and count for the Sankey diagram
-    sources = []
-    targets = []
-    counts = []
-    nbr_sources = []
-    pos_ys=[]
-
-    for index, row in dataframe.iterrows():
-        # Extract the taxonomic information from the "Taxonomic" column
-        taxonomic_info = row['Taxonomic']
-
-        # Split the taxonomic information into individual names
-        taxonomic_names = taxonomic_info.split(',')[:num_levels]
-
-        # Iterate through each name and update the counts
-        for i in range(len(taxonomic_names) - 1):
-            # Remove leading/trailing whitespaces
-            source = taxonomic_names[i].strip()
-            nbr_source = i
-            pos_y= i
-            target = taxonomic_names[i + 1].strip()
-
-            # Append source, target, and count to the lists
-            sources.append(source)
-            targets.append(target)
-            nbr_sources.append(nbr_source)
-            pos_ys.append(pos_y)
-            counts.append(1) 
-
-
-    scaler = MinMaxScaler()
-    normalized = scaler.fit_transform([[x] for x in nbr_sources])
-    nbr_sources = normalized.flatten()
-
-    scaler = MinMaxScaler()
-    normalized = scaler.fit_transform([[x] for x in pos_ys])
-    pos_ys = normalized.flatten()
-
-    sankey_df = pd.DataFrame({'Source': sources, 'Target': targets, 'Count': counts, 'Nbr Sources': nbr_sources, 'pos_y': pos_ys})
-
-    # Aggregate counts based on source and target
-    sankey_df = sankey_df.groupby(['Source', 'Target', 'Nbr Sources','pos_y']).size().reset_index(name='Count')
-
-    # Filter out entries with counts below the threshold
-    sankey_df = sankey_df[sankey_df['Count'] >= threshold]
-
-    # Create string to integer dictionary
-    string_to_integer_dict = {string: index for index, string in enumerate(set(sources) | set(targets))}
-
-    # Map strings to integers
-    sankey_df["Source"] = sankey_df["Source"].map(string_to_integer_dict)
-    sankey_df["Target"] = sankey_df["Target"].map(string_to_integer_dict)
-    
-    # Create a list to store RGB colors
-    colors = []
-    for i in range(len(sankey_df)):
-        red = np.random.randint(0, 256)
-        green = np.random.randint(0, 256)
-        blue = np.random.randint(0, 256)
-        opacity = np.random.randint(1, 100)
-        colors.append(f'rgba({red}, {green}, {blue},{opacity/100})')
-    
-    sankey_df['Colors'] = colors
-    print(sankey_df)
-    
-    # Create a Plotly Sankey diagram
-    fig = go.Figure(data=[go.Sankey(
-        arrangement='snap',
-        
-        node=dict(
-            pad=node_pad,
-            thickness=node_thickness,
-            line=dict(color="black", width=0.5),
-            label=list(string_to_integer_dict.keys()),
-            color=sankey_df['Colors'],
-            x=sankey_df['Nbr Sources'],
-            y=sankey_df['pos_y']
-        ),
-        link=dict(
-            source=sankey_df["Source"],  # Source nodes
-            target=sankey_df["Target"],  # Target nodes
-            value=sankey_df['Count'],     # Values
-            color=sankey_df['Colors']
-        ))])
-
-    # Update layout
-    fig.update_layout(
-        title_text="Taxonomic Sankey Diagram",
-        font=dict(size=node_label_size)  # Set label font size
-    )
-    
-    # Show the Sankey diagram
-    fig.show()
-
-
 
 
 def extract_word_at_position(X, p):
@@ -279,3 +191,28 @@ def category_to_int(data, name_category):
     data.iloc[:, 0] = data.iloc[:, 0].replace(map_dict)
 
     return data
+
+def extract_positions(dataset,pos_list):
+    """
+    Extract positions in the sequence and corresponding columns from the dataset.
+
+    Args:
+        dataset (pd.DataFrame): Input dataset.
+        pos_list (list of integer): List of the positions to keep.
+
+    Returns:
+        pd.DataFrame: Filtered dataset containing selected columns.
+    """
+
+    selected_columns = dataset[['Labels']]
+    
+    # Iterate over each position in the pos_list
+    for pos in pos_list:
+        # Construct the pattern to match column names
+        pattern = f'^pos_{pos}_'
+        # Select columns that match the pattern for the current position
+        columns_for_pos = dataset.filter(regex=pattern)
+        # Concatenate the selected columns to the DataFrame
+        selected_columns = pd.concat([selected_columns, columns_for_pos], axis=1)
+        
+    return selected_columns

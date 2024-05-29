@@ -33,7 +33,7 @@ def predict(model, X, device):
     return predictions
 
 def cross_val_pos_consistency(hyperparam_dict, train_inputs, train_labels , val_inputs, val_labels,output_dim,columns_info, device, nbr_training, pos = range(0,600)):
-    """Perform cross-validation for a neural network model.
+    """Perform cross-validation for a neural network model many times. (nbr_training times)
 
     Args:
         hyperparam_dict (dict): Dictionary mapping hyperparameter names to values.
@@ -41,11 +41,12 @@ def cross_val_pos_consistency(hyperparam_dict, train_inputs, train_labels , val_
         val_inputs (numpy array): Validation data.
         val_labels (numpy array): True labels for validation data.
         output_dim (int): Dimension of the output (number of classes).
+        columns_data (pd.DataFrame): columns informations of the dataset.
         device (torch.device): The device (cuda or cpu) on which the model should run.
         nbr_training (int): Number of times the neural net will be retrained to compute de std of the scores.
 
     Returns:
-        tuple of floats: Mean and standard deviation of the scores at each position for all epochs.
+        tuple of floats: Mean and standard deviation of the F1 score. Mean and standard deviation of the relevance score at each position.
     """
     # List to store the scores at each position for each epoch
     Scores_pos = []
@@ -97,17 +98,18 @@ def cross_val_pos_consistency(hyperparam_dict, train_inputs, train_labels , val_
         val_pred = predict(model, val_inputs, device)
         # Compute the weighted F1 score for the validation set
         val_f1 = f1_score(val_labels, val_pred, average='weighted')
+        # compute the relevance score for each position
         score = feature_importances_neural(model, columns_info, smoothness=0, pos=pos, plot=0)
         
         f1_scores.append(val_f1)
         Scores_pos.append(score)
 
-    # Calculate mean and standard deviation of F1 scores and pos scores across all epochs
+    # Calculate mean and standard deviation of F1 scores and relevance score across all training
     return np.mean(f1_scores), np.std(f1_scores), np.mean(Scores_pos,axis=0), np.std(Scores_pos, axis=0)
 
 
 def optimize_hyperparameters_nn_consistency(train_inputs, train_labels, val_inputs, val_labels,output_dim,columns_info, param_grid, nbr_training = 10, pos = range(0,600)):
-    """Optimize hyperparameters for a neural network using batched cross-validation and the standard deviation of the score as a criteria.
+    """Optimize hyperparameters for a neural network using batched cross-validation and the standard deviation of the relevance score as a criteria.
 
     Args:
         train_inputs (numpy array): Training data.
@@ -115,6 +117,7 @@ def optimize_hyperparameters_nn_consistency(train_inputs, train_labels, val_inpu
         val_inputs (numpy array): Validation data.
         val_labels (numpy array): True labels for validation data.
         output_dim (int): Dimension of the output (number of classes).
+        columns_data (pd.DataFrame): columns informations of the dataset.
         param_grid (dict): Dictionary of hyperparameter values to search.
         nbr_training (int): Number of times the neural net will be retrained to compute de std of the scores.
         pos (list of int): list of the position on wich to learn
@@ -155,15 +158,15 @@ def optimize_hyperparameters_nn_consistency(train_inputs, train_labels, val_inpu
         print(f"time: {time.time()-start_time}\n")
         print(f"Hyperparameters: {hyperparam_dict}, Mean Validation F1 Score: {mean_f1}, Std Validation F1 Score: {std_f1}, Mean Std of Scores: {np.mean(std_scores)}\n")
 
-        # Update the best hyperparameters if the mean score improves
         
+        # store the relevant metrics
         store_params.append(hyperparam_dict)
         store_f1.append(mean_f1)
         store_f1_std.append(std_f1)
         store_mean_scores.append(mean_scores)
         store_std_scores.append(np.mean(std_scores))
 
-
+        # Update the best hyperparameters if the mean score improves
         if np.mean(std_scores) < np.mean(best_std_scores):
             best_mean_scores = mean_scores
             best_std_scores = std_scores

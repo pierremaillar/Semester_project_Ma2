@@ -50,102 +50,18 @@ def convolution_matrix(labels, pred, categ):
 
 
 
-def feature_importances(model_rdf, model_neural, mutual_info, data_df, smoothness = 30, nbr_pos = 599, plot = 1):
-    """Plot feature importances for different models and return the smoothed scores.
-
-    Args:
-        model_rdf (RandomForestClassifier): Random Forest model.
-        model_neural (nn.Module): Neural network model.
-        mutual_info (numpy array): Mutual information scores.
-        data_df (pd.DataFrame): Input data.
-        smoothness (int): Smoothness factor for plotting (default is 30).
-        nbr_pos (int): Number of positions in the sequence(default is 599).
-        plot(boolean): 1 if we want to plot de results, 0 if we dont.
-
-    Returns:
-        pd.DataFrame: Smoothed scores for feature importances of each positions.
-    """
-    #drop the first columns containing the labels
-    columns_data = data_df.drop(data_df.columns[0], axis=1).columns
-    #empty dataframe to be filled
-    scores = pd.DataFrame(index=[f'pos_{i}' for i in range(1,nbr_pos+1)])  
-    
-    #computing the features importance in the neural network
-    eye = torch.tensor(np.eye(len(columns_data)), dtype=torch.float32)
-    zero = torch.tensor(np.zeros(len(columns_data)), dtype=torch.float32)
-    
-    if torch.cuda.is_available():
-        model_neural = model_neural.cpu()
-        
-    neural_impo = model_neural(eye)-model_neural(zero)
-    if torch.cuda.is_available():
-        neural_impo = neural_impo.cpu()
-    
-    #reshaping neural_impo into a dataframe
-    neural_impo = neural_impo.detach().numpy()
-    neural_impo = np.mean(neural_impo,axis=1)
-    neural_impo = neural_impo.reshape((len(neural_impo),1))
-    neural_impo = pd.DataFrame(neural_impo.T, columns=columns_data)
-    
-    
-    #reshaping rdf_impo into a dataframe
-    rdf_impo = model_rdf.feature_importances_
-    rdf_impo = rdf_impo.reshape((len(rdf_impo),1))
-    rdf_impo = pd.DataFrame(rdf_impo.T, columns=columns_data)
-
-    #reshaping mutual_info into a dataframe
-    mutual_info = mutual_info.reshape((len(mutual_info),1))
-    mutual_df = pd.DataFrame(mutual_info.T, columns=columns_data)
-
-    #loop for every positions, sum the features importances (for each methods) of every positions 
-    for i in range(1,nbr_pos+1):
-        selected_columns = neural_impo.filter(regex=f'_{i}_')
-        scores.loc[f'pos_{i}','Neural_scores'] = np.linalg.norm(np.abs(selected_columns), axis=1)
-        
-        
-        selected_columns = mutual_df.filter(regex=f'_{i}_')
-        scores.loc[f'pos_{i}','Mutual_scores'] = np.linalg.norm(np.abs(selected_columns), axis=1)
-        
-        
-       
-        selected_columns = rdf_impo.filter(regex=f'_{i}_')
-        scores.loc[f'pos_{i}','rdf_scores'] = np.linalg.norm(np.abs(selected_columns),axis = 1)
-     
-    
-    #standardize the scores
-    scores_standardize = pd.DataFrame(StandardScaler().fit_transform(scores), columns=scores.columns, index=scores.index)
-    
-    
-    #smooth the scores with a moving average
-    scores_smoothed = scores_standardize.rolling(window=smoothness, min_periods=1,center=True).mean()
-    scores_smoothed = pd.DataFrame(StandardScaler().fit_transform(scores_smoothed), columns=scores_smoothed.columns, index=scores_smoothed.index)
-    if plot:
-        #plots
-        plt.plot(range(1,nbr_pos+1),scores_smoothed['Neural_scores'], label='Neural_scores', color='blue')
-        plt.plot(range(1,nbr_pos+1),scores_smoothed['Mutual_scores'], label='Mutual_scores', color='green')
-        plt.plot(range(1,nbr_pos+1),scores_smoothed['rdf_scores'], label='rdf_scores', color='red')
-        plt.title('Position importances')
-        plt.xlabel('Positions')
-        plt.ylabel('Scores')
-        plt.legend()
-        plt.show()
-    
-    return scores_smoothed
-
-
-
-def feature_importances_neural(model_neural, columns_data, smoothness=30, pos=range(0,599), plot=1):
+def feature_importances_neural(model_neural, columns_data, smoothness=0, pos=range(0,599), plot=1):
     """Plot feature importances for different models and return the smoothed scores.
 
     Args:
         model_neural (nn.Module): Neural network model.
         columns_data (pd.DataFrame): columns informations of the dataset.
-        smoothness (int): Smoothness factor for plotting (default is 30).
-        pos (range or list): Range or list of positions in the sequence (default is range(1,600)).
+        smoothness (int): size of the window of the moving average filter (default is 0).
+        pos (range or list): Range or list of positions in the sequence (default is range(0,599)).
         plot (boolean): 1 if we want to plot the results, 0 if we don't.
 
     Returns:
-        pd.DataFrame: Smoothed scores for feature importances of each position.
+        pd.DataFrame: relevance score of each position.
     """
     
     # Empty dataframe to be filled
@@ -211,11 +127,11 @@ def feature_importances_neural(model_neural, columns_data, smoothness=30, pos=ra
 
 
 def Modify_PDB_file(input_file, scores):
-    """Create a copy of a .pdb file replacing the temperature factor (B-factor) by the scores for each position.
+    """Create a copy of a .pdb file replacing the temperature factor (B-factor) by the relevance score for each position.
 
     Args:
         input_file (string): path to the input .pdb file.
-        scores (list): list of the scores.
+        scores (list): list of the relevance scores.
 
     Returns:
         None
