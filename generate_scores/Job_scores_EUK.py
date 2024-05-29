@@ -56,28 +56,46 @@ stacked_array = np.stack(arrays, axis=0)
 mean_values = np.mean(stacked_array, axis=0)
 std_values = np.std(stacked_array, axis=0)
 
+#save data
+np.savetxt('output/mean_EUK.txt', mean_values)
+np.savetxt('output/std_EUK.txt', std_values)
+
+
+scores = pd.DataFrame({'mean': mean_values.flatten(), 'std': std_values.flatten()})
+norm = plt.Normalize(scores['mean'].min(), scores['mean'].max())
+
+
+plt.figure(figsize=(60, 6))
+plt.style.use('dark_background')
+plt.xlabel('Positions', color='white')
+plt.ylabel('Scores', color='white')
+plt.title('Relevant scores EUK', color='white')
+
+
+colors = plt.cm.bwr(norm(scores['mean']))
+for i in range(len(scores["mean"])):
+    plt.errorbar(i, scores["mean"][i], scores["std"][i], capsize=4, color=colors[i], fmt="o", markersize=4)
+
+num_ticks = len(scores["mean"]) // 10
+xticks_indices = np.linspace(0, len(scores["mean"]) - 1, num_ticks, dtype=int)
+plt.xticks(np.arange(len(scores["mean"]))[xticks_indices], color='white')
+plt.yticks(color='white')
 
 
 
-plt.figure(figsize=(50, 6))
-plt.errorbar(positions_to_keep, mean_values[:, 0], std_values[:, 0], capsize=4, color="red", fmt="o", markersize=4)
-
-plt.xlabel('Positions')
-plt.ylabel('Scores')
-plt.title('Position importances')
+plt.savefig('output/Postitionrelevance_EUK.png', dpi=200)
 
 
-num_ticks = len(positions_to_keep)//15
-xticks_indices = np.linspace(0, len(positions_to_keep) - 1, num_ticks, dtype=int)
-plt.xticks(np.array(positions_to_keep)[xticks_indices])
-
-plt.savefig('output/Postitionimportances_opti_BAC.png', dpi=200)
-
+#modify pdb file
+smoothness = 30
+scores['mean'] = scores['mean'].rolling(window=smoothness, min_periods=1, center=True).mean()
+relevant_scores = scores['mean']
 
 
+#name of the pdb file
+input_pdb = "5nro.pdb"
 
-np.savetxt('output/mean_BAC.txt', mean_values)
-np.savetxt('output/std_BAC.txt', std_values)
+Modify_PDB_file(input_pdb, relevant_scores)
 
 
 print("Job finished")

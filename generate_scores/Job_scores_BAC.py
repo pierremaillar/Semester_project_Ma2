@@ -32,7 +32,6 @@ learning_rate = best_params_nn['learning_rate']
 batch_size = best_params_nn['batch_size']
 num_epochs = best_params_nn['num_epochs']
 
-
 output_dim = 6
 tic = time.time()
 dfs = []
@@ -57,40 +56,46 @@ arrays = [df.to_numpy() for df in dfs]
 stacked_array = np.stack(arrays, axis=0)
 mean_values = np.mean(stacked_array, axis=0)
 std_values = np.std(stacked_array, axis=0)
-
-
-
-
-plt.figure(figsize=(50, 6))
-plt.errorbar(positions_to_keep, mean_values[:, 0], std_values[:, 0], capsize=4, color="red", fmt="o", markersize=4)
-
-plt.xlabel('Positions')
-plt.ylabel('Scores')
-plt.title('Position importances')
-
-
-num_ticks = len(positions_to_keep)//15
-xticks_indices = np.linspace(0, len(positions_to_keep) - 1, num_ticks, dtype=int)
-plt.xticks(np.array(positions_to_keep)[xticks_indices])
-
-plt.savefig('output/Postitionimportances_opti_BAC.png', dpi=200)
-
-
 #save data
 np.savetxt('output/mean_BAC.txt', mean_values)
 np.savetxt('output/std_BAC.txt', std_values)
 
 
-#modify pdb file
-df = pd.read_csv('mean_BAC.txt', header=None, names=['mean'])
-smoothness = 80
-df['mean'] = df['mean'].rolling(window=smoothness, min_periods=1, center=True).mean()
+scores = pd.DataFrame({'mean': mean_values.flatten(), 'std': std_values.flatten()})
+norm = plt.Normalize(scores['mean'].min(), scores['mean'].max())
 
-scores = df['mean']
+
+plt.figure(figsize=(60, 6))
+plt.style.use('dark_background')
+plt.xlabel('Positions', color='white')
+plt.ylabel('Scores', color='white')
+plt.title('Relevant scores BAC', color='white')
+
+
+colors = plt.cm.bwr(norm(scores['mean']))
+for i in range(len(scores["mean"])):
+    plt.errorbar(i, scores["mean"][i], scores["std"][i], capsize=4, color=colors[i], fmt="o", markersize=4)
+
+num_ticks = len(scores["mean"]) // 10
+xticks_indices = np.linspace(0, len(scores["mean"]) - 1, num_ticks, dtype=int)
+plt.xticks(np.arange(len(scores["mean"]))[xticks_indices], color='white')
+plt.yticks(color='white')
+
+
+
+plt.savefig('output/Postitionrelevance_BAC.png', dpi=200)
+
+
+#modify pdb file
+smoothness = 30
+scores['mean'] = scores['mean'].rolling(window=smoothness, min_periods=1, center=True).mean()
+relevant_scores = scores['mean']
+
+
+#name of the pdb file
 input_pdb = "5nro.pdb"
 
-Modify_PDB_file(input_pdb, scores)
-
+Modify_PDB_file(input_pdb, relevant_scores)
 
 
 print("Job finished")
