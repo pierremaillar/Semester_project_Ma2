@@ -19,6 +19,20 @@ number of Campylobacterota :
 shape of dataframe : (54323, 11450)
 time: 31.176040410995483
 
+
+param_grid = {
+        'layer_dim': [32,64,128,256],
+        'number_hidden_layer': [2,3,4],
+        'dropout_prob': [0.2,0.4,0.6,0.8],
+        'l2_regu': [1e-05],
+        'weight_decay': [0.0001],
+        'learning_rate':[0.0001],
+        'batch_size':[64,512,2048],
+        'num_epochs':[3,10]
+        }
+
+
+
 Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 2, 'dropout_prob': 0.2, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 64, 'num_epochs': 3}, Mean Validation F1 Score: 0.9915849453088162, Std Validation F1 Score: 0.0013511834918158118, Mean Std of Scores: 0.13781896669630053
 
 time: 82.40249538421631
