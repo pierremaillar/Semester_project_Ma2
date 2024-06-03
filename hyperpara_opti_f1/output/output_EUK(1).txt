@@ -11,6 +11,20 @@ number of Others :
 {1286}
 ---------
 shape of dataframe : (36377, 12834)
+
+param_grid = {
+        'layer_dim': [32,64,128,256],
+        'number_hidden_layer': [2,3,4,5],
+        'dropout_prob': [0.2,0.4,0.6,0.8],
+        'l2_regu': [1e-05],
+        'weight_decay': [0.0001],
+        'learning_rate':[0.0001,0.001],
+        'batch_size':[64,512,2048],
+        'num_epochs':[5,10,15]
+        }
+
+
+
 time: 18.092255115509033
 
 Hyperparameters: {'layer_dim': 32, 'number_hidden_layer': 2, 'dropout_prob': 0.2, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 64, 'num_epochs': 5}, Mean Validation F1 Score: 0.9722456157483583, Std Validation F1 Score: 0.0024457959853236276

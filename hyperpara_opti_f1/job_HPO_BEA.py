@@ -21,13 +21,13 @@ level3=category_to_int(level3,level3_categ)
 
 param_grid = {
         'layer_dim': [32,64,128,256],
-        'number_hidden_layer': [2,3,4,5],
-        'dropout_prob': [0.2,0.4,0.6,0.8],
+        'number_hidden_layer': [2,3,4],
+        'dropout_prob': [0.2,0.4,0.6,0.7],
         'l2_regu': [1e-05],
         'weight_decay': [0.0001],
-        'learning_rate':[0.0001,0.001],
+        'learning_rate':[0.0001],
         'batch_size':[64,512,2048],
-        'num_epochs':[5,10,15]
+        'num_epochs':[5,7,10]
         }
 
 
