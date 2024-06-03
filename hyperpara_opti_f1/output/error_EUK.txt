@@ -1,1 +1,2 @@
-python: can't open file '/home/pmaillar/Semester_project_Ma2/hyperpara_opti_f1/job_HPO_cons_EUK.py': [Errno 2] No such file or directory
+/home/pmaillar/Semester_project_Ma2/hyperpara_opti_f1/python_modules/datatreatment.py:191: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  data.iloc[:, 0] = data.iloc[:, 0].replace(map_dict)
