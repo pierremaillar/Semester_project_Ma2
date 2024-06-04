@@ -19,7 +19,7 @@ columns_info = level3.drop(level3.columns[0], axis=1).columns
 positions_to_keep =range(0,599)
 
 
-best_params_nn = {'layer_dim': 128, 'number_hidden_layer': 2, 'dropout_prob': 0.8, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 1024, 'num_epochs': 10}
+best_params_nn = {'layer_dim': 64, 'number_hidden_layer': 4, 'dropout_prob': 0.2, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 64, 'num_epochs': 10}
 
 
 
@@ -97,7 +97,7 @@ relevant_scores = scores['mean']
 #name of the pdb file
 input_pdb = "5nro.pdb"
 
-Modify_PDB_file(input_pdb, relevant_scores)
+Modify_PDB_file(input_pdb, relevant_scores, "BEA")
 
 
 print("Job finished")

@@ -126,18 +126,19 @@ def feature_importances_neural(model_neural, columns_data, smoothness=0, pos=ran
 
 
 
-def Modify_PDB_file(input_file, scores):
+def Modify_PDB_file(input_file, scores, output_name):
     """Create a copy of a .pdb file replacing the temperature factor (B-factor) by the relevance score for each position.
 
     Args:
         input_file (string): path to the input .pdb file.
         scores (list): list of the relevance scores.
+        output_name (string): name of the output .pdb file.
 
     Returns:
         None
     """
     n = 0
-    output_file =f"output/pdb_files/{input_file[:-4]}_scores.pdb"
+    output_file =f"output/pdb_files/{input_file[:-4]}_{output_name}.pdb"
     with open(input_file, 'r') as f_in, open(output_file, 'w') as f_out:
         for line in f_in:
             if line.startswith('ATOM'):
