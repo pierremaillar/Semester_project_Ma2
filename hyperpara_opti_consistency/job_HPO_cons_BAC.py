@@ -28,11 +28,11 @@ param_grid = {
         'l2_regu': [1e-05],
         'weight_decay': [0.0001],
         'learning_rate':[0.0001],
-        'batch_size':[128,1024,4096],
-        'num_epochs':[4,7,9]
+        'batch_size':[64,128,1024],
+        'num_epochs':[5,7,10]
         }
 
-positions_to_keep =range(0,600)
+positions_to_keep =range(0,599)
 nbr_training = 5
 
 
