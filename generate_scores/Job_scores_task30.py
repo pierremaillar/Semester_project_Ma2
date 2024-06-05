@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 import time
+
 from python_modules.create_batch import *
 from python_modules.datatreatment import *
 from python_modules.neuralnet import *
@@ -8,7 +9,7 @@ from python_modules.visualisations import *
 
 
 path_to_dataset ="../dataset_hsp70_tax/dataset_hsp70_tax.csv" 
-
+hsp70 = importing_data(path_to_dataset)
 
 level3, level3_categ= get_data(hsp70, 4, 30,Use_Others=False)
 level3=encode01(level3)
