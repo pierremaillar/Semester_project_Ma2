@@ -139,7 +139,7 @@ def Modify_PDB_file(input_file, scores, output_name):
     """
     n = 0
     output_file =f"output/pdb_files/{input_file[:-4]}_{output_name}.pdb"
-    with open(input_file, 'r') as f_in, open(output_file, 'w') as f_out:
+    with open(f"input_pdb/{input_file}", 'r') as f_in, open(output_file, 'w') as f_out:
         for line in f_in:
             if line.startswith('ATOM'):
                 # Get the position in the sequence
