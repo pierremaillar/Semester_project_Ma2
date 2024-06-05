@@ -1,4 +1,8 @@
+/home/pmaillar/Semester_project_Ma2/generate_scores/python_modules/datatreatment.py:191: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
+  data.iloc[:, 0] = data.iloc[:, 0].replace(map_dict)
 Traceback (most recent call last):
-  File "/home/pmaillar/Semester_project_Ma2/generate_scores/Job_scores_task30.py", line 13, in <module>
-    level3, level3_categ= get_data(hsp70, 4, 30,Use_Others=False)
-NameError: name 'hsp70' is not defined
+  File "/home/pmaillar/Semester_project_Ma2/generate_scores/Job_scores_task30.py", line 98, in <module>
+    Modify_PDB_file(input_pdb, relevant_scores, "task30")
+  File "/home/pmaillar/Semester_project_Ma2/generate_scores/python_modules/visualisations.py", line 142, in Modify_PDB_file
+    with open(input_file, 'r') as f_in, open(output_file, 'w') as f_out:
+FileNotFoundError: [Errno 2] No such file or directory: '5nro.pdb'
