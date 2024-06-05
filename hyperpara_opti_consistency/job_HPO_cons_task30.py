@@ -28,7 +28,7 @@ param_grid = {
         'weight_decay': [0.0001],
         'learning_rate':[0.0001],
         'batch_size':[64],
-        'num_epochs':[6,8,10]
+        'num_epochs':[5,7,10]
         }
 
 positions_to_keep =range(0,599)

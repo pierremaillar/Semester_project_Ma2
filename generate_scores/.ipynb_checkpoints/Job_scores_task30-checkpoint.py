@@ -39,7 +39,7 @@ dfs = []
 train, train_label, test, test_label, val, val_label=split_dataset(level3, 0.8, 0.1, 0.1)
 input_dim = train.shape[1]
 
-for i in range(3):
+for i in range(30):
     
     
     
