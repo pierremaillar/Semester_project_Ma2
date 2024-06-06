@@ -83,11 +83,11 @@ If you are connected to izar run the following command:
 ```bash
 exit
 ```
-Then run this for the generation of relevant scores:
+Then run this to collect the output of the generation of relevant scores:
 ```bash
 scp -r gasparusername@izar.epfl.ch:/home/gasparusername/Semester_project_Ma2/relevant_scores/output "path\to\local\storage_file"
 ```
-Or this for the hyperparameter optimisation:
+Or this after the hyperparameter optimisation:
 ```bash
 scp -r gasparusername@izar.epfl.ch:/home/gasparusername/Semester_project_Ma2/hyperpara_opti/output "path\to\local\storage_file"
 scp -r gasparusername@izar.epfl.ch:/home/gasparusername/Semester_project_Ma2/hyperpara_opti_consistency/output "path\to\local\storage_file"
