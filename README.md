@@ -1,7 +1,7 @@
 # Semester_project: Illustration of neural network interpretation
 
 ## General description
-This project focuses on the analysis of amino acid sequences within Hsp70 proteins. We use prediction of the taxonomic group to which the proteins belong to then intepret the models training to identify critical positions within the sequence.
+This project focuses on the analysis of amino acid sequences within Hsp70 proteins. We use prediction of the taxonomic group to which the proteins belong to then intepret the models training to identify critical positions within the sequence. Here the code for implementation of the models, training, hyperparameters optimization and computation of the relevant scores is given. If .pdb file is provided, we also replace the b-factor data by the relevant scores to visualize the scores on a the 3D structure of Hsp70.
 
 ## Installations required
 - pytorch
