@@ -1,9 +1,8 @@
 # Semester_project: Illustration of neural network interpretation
 
 ## General description
-This project focuses on the analysis of amino acid sequences within Hsp70 proteins with dual objectives. The primary goal is the prediction of the taxonomic group to which the proteins belong. Additionally, we aim to identify critical positions within the sequence that are pivotal for protein classification.
+This project focuses on the analysis of amino acid sequences within Hsp70 proteins with dual objectives. The primary goal is the prediction of the taxonomic group to which the proteins belong and use an intepretation to identify critical positions within the sequence.
 
-To achieve these objectives, we use both a Random Forest algorithm and a Neural Network for the classification.
 ## Installations required
 - pytorch
 - panda
