@@ -47,7 +47,7 @@ ssh <gaspar username>@izar.epfl.ch
 3. Clone this repository
 
 ```bash
-git clone https://github.com/rahi-lab/Protein_design.git
+git clone https://github.com/pierremaillar/Semester_project_Ma2.git
 ```
 
 Note that downloading the repository from the command line requires a different authentication method than logging into the github web site. Your regular password should not work for downloading the repository. You have to create a token through the github password (or find another way to authenticate). The process is described on this web site:
@@ -57,7 +57,7 @@ https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/m
 #2. Install
 
 ```bash
-cd Protein_design
+cd Semester_project_Ma2
 source setup.sh gasparusername
 ```
 
