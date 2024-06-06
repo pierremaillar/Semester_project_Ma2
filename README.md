@@ -8,7 +8,7 @@ This project focuses on the analysis of amino acid sequences within Hsp70 protei
 - panda
 - numpy
 - scikit-learn
-- plotly
+- seaborn
 - matplotlib
 ## Files description
 ### hyperpara_opti_f1: Optimize the hyperparameters using the f1 score as a criterion
