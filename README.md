@@ -60,28 +60,41 @@ cd Semester_project_Ma2
 source setup.sh gasparusername
 ```
 
-# 4. Submit a job to IZAR
+# 2. Submit a job to IZAR
+Go into the file corresponding to task. i.e to generate the relevant scores.
  ```bash
-sbatch run.sh
+cd generate_scores
+```
+Activate the pytorch environnement
+ ```bash
+conda activate env_pytorch
+```
+Submit the Job. i.e generate the relevant scores for the task EUK.
+ ```bash
+sbatch scores_EUK.run
 ```
 You can check up on it's progress using this command:
  ```bash
 squeue -u gasparusername
 ```
 
-# 5. Downloading results to local computer
+# 3. Downloading results to local computer
 If you are connected to izar run the following command:
 ```bash
 exit
 ```
-Then run:
+Then run this for the generation of relevant scores:
 ```bash
-scp -r gasparusername@izar.epfl.ch:/home/gasparusername/Protein_design/results "path\to\local\storage_file"
-
+scp -r gasparusername@izar.epfl.ch:/home/gasparusername/Semester_project_Ma2/relevant_scores/output "path\to\local\storage_file"
 ```
-To get the path, similar to pdb file right click on folder where you want the results to be downloaded and select "copy as path".
+Or this for the hyperparameter optimisation:
+```bash
+scp -r gasparusername@izar.epfl.ch:/home/gasparusername/Semester_project_Ma2/hyperpara_opti/output "path\to\local\storage_file"
+scp -r gasparusername@izar.epfl.ch:/home/gasparusername/Semester_project_Ma2/hyperpara_opti_consistency/output "path\to\local\storage_file"
+```
+To get the path, right click on folder where you want the results to be downloaded and select "copy as path".
 
-# 6. Updating the pipline
+# 4. Updating the pipline
 In case there are updates. The pipline can be updated as follows:
 ```bash
 ssh <gaspar username>@izar.epfl.ch
