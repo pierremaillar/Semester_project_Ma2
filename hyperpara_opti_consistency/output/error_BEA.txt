@@ -1,3 +1,2 @@
 /home/pmaillar/Semester_project_Ma2/hyperpara_opti_consistency/python_modules/datatreatment.py:191: FutureWarning: Downcasting behavior in `replace` is deprecated and will be removed in a future version. To retain the old behavior, explicitly call `result.infer_objects(copy=False)`. To opt-in to the future behavior, set `pd.set_option('future.no_silent_downcasting', True)`
   data.iloc[:, 0] = data.iloc[:, 0].replace(map_dict)
-slurmstepd: error: *** JOB 2100984 ON i66 CANCELLED AT 2024-06-05T11:47:19 DUE TO TIME LIMIT ***
