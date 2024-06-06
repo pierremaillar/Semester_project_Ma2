@@ -16,10 +16,7 @@ To achieve these objectives, we use both a Random Forest algorithm and a Neural 
 - **HPO_BEA.run, HPO_EUK.run, HPO_BAC.run, HPO_task30.run,** : to submit a job to Izar in order to optimize hyperparameters.
 ### hyperpara_opti_consistency: Optimize the hyperparameters using the consistency score as a criterion
 - **HPO_cons_BEA.run, HPO_cons_EUK.run, HPO_cons_BAC.run, HPO_cons_task30.run,** : to submit a job to Izar in order to optimize hyperparameters.
-- ### generate scores: Generate relevant scores after hyperparameters selection
-- **input_pdb** : folder containing the .pdb files to modify adding the relevant scores
-- **scores_BEA.run, scores_EUK.run, scores_BAC.run, scores_task30.run,** : to submit a job to Izar in order to calculate the relevant score for each task.
-### generate scores: to generate relevant scores after hyperpara selection
+### generate_scores: to generate relevant scores after hyperpara selection
 - **input_pdb** : folder containing the .pdb files to modify adding the relevant scores
 - **scores_BEA.run, scores_EUK.run, scores_BAC.run, scores_task30.run,** : to submit a job to Izar in order to calculate the relevant score for each task.
 ###
