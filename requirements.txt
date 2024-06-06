@@ -2,5 +2,5 @@ pytorch
 panda
 numpy
 scikit-learn
-plotly
+seaborn
 matplotlib
