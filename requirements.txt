@@ -1,5 +1,6 @@
-pandas
+pytorch
+panda
 numpy
 scikit-learn
-torch
-plotly_express
+plotly
+matplotlib
