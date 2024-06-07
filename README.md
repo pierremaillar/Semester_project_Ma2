@@ -34,7 +34,7 @@ If you're not on an EPFl network you must use a VPN
 
 More info can be found here: https://www.epfl.ch/schools/sb/research/iphys/wp-content/uploads/2019/06/Welcome_IPHYS-IT.pdf
 
-# 1. Setup
+# 1. Setup (In progress, not working)
 
 1. Make sure you have an account on izar. Throughout, I will be refering to your username when I write <gaspar username>
 
