@@ -21,7 +21,7 @@ positions_to_keep =range(0,599)
 #best f1 score
 #best_params_nn = {'layer_dim': 128, 'number_hidden_layer': 3, 'dropout_prob': 0.2, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.001, 'batch_size': 64, 'num_epochs': 15}
 #best consitency
-best_params_nn = {'layer_dim': 64, 'number_hidden_layer': 4, 'dropout_prob': 0.7, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 64, 'num_epochs': 5}
+best_params_nn = {'layer_dim': 32, 'number_hidden_layer': 3, 'dropout_prob': 0.7, 'l2_regu': 1e-05, 'weight_decay': 0.0001, 'learning_rate': 0.0001, 'batch_size': 64, 'num_epochs': 8}
 
 
 layer_dim = best_params_nn['layer_dim']
@@ -40,14 +40,11 @@ dfs = []
 train, train_label, test, test_label, val, val_label=split_dataset(level3, 0.8, 0.1, 0.1)
 input_dim = train.shape[1]
 
+model_neural = ModelClassification(input_dim, output_dim, layer_dim, number_hidden_layer, dropout_prob, l2_regu)
+optimizer = torch.optim.Adam(model_neural.parameters(), lr = learning_rate, weight_decay=weight_decay)
+
 for i in range(30):
-    
-    
-    
-    model_neural = ModelClassification(input_dim, output_dim, layer_dim, number_hidden_layer, dropout_prob, l2_regu)
-    optimizer = torch.optim.Adam(model_neural.parameters(), lr = learning_rate, weight_decay=weight_decay)
-    train_model(model_neural, num_epochs, train, train_label, test, test_label, optimizer, batch_size)
-    
+    train_model(model_neural, num_epochs, train, train_label, test, test_label, optimizer, batch_size) 
     dfs.append(feature_importances_neural(model_neural, columns_info, smoothness = 0, pos =positions_to_keep, plot = 0))
     t = time.time() - tic
     print(f"Got to iteration {i+1} in {t} seconds")
